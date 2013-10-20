@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RubiksCube</title>
+    <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec4 vPosition; // vert attribs bound to array buffer data
+        attribute vec4 vColor; // vert attribs bound to array buffer data
+
+        varying vec4 color; // sent down to later stages of the pipeline
+
+        uniform mat4 projection; // projection matrix passed from the app
+        uniform mat4 modeltransform; // per-object transform passed from the app
+
+        void main()
+        {
+        color = vColor; // pass vertex color through unchanged
+
+        // some per-object matrix ops now done at app level
+        // but final matrix chain is processed here
+        gl_Position = projection * modeltransform * vPosition;
+        }
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        #ifdef GL_ES
+        precision highp float;
+        #endif
+
+        varying vec4 color;
+
+        void
+        main()
+        {
+        gl_FragColor = color;
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
