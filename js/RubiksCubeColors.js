@@ -1,3 +1,4 @@
+var COLOR;
 var NOCOLOR = 0;  // For truthiness testing of all colors
 var WHITE = 1;
 var RED = 2;
