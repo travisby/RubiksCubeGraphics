@@ -7,15 +7,15 @@
 function RubiksCubeFace() {
 }
 
-RubiksCubeFace.prototype.cubes = [];
+RubiksCubeFace.prototype.cubies = [];
 
 
 /**
  * Get the individual cubes of a cube
  * @returns {Array}
  */
-RubiksCube.prototype.getCubes = function () {
-    return this.cubes;
+RubiksCube.prototype.getCubies = function () {
+    return this.cubies;
 };
 
 /**
@@ -24,7 +24,7 @@ RubiksCube.prototype.getCubes = function () {
  */
 RubiksCubeFace.prototype.getColor = function () {
     // We use the center cube to define the color of our Face
-    return this.cubes[(this.cubes.length - 1) / 2].getColor();
+    return this.cubies[(this.cubies.length - 1) / 2].getColor();
 };
 
 /**
