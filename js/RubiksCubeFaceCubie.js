@@ -3,14 +3,15 @@
  * @constructor
  */
 function RubiksCubeFaceCubie() {
-}
 
-RubiksCubeFaceCubie.prototype.tiles = [];
+    var tiles = [];
 
-/**
- * Get the possible tiles part of our cubie
- * @returns {Array}
- */
-function RubiksCubeFaceCubie.prototype.getTiles() {
-    return this.tiles;
+    /**
+     * Get the possible tiles part of our cubie
+     * @returns {Array}
+     */
+
+    this.getTiles = function () {
+        return tiles;
+    }
 }

@@ -3,14 +3,13 @@
  * @constructor
  */
 function RubiksCubeFaceCubieTile() {
-}
+    var color = NOCOLOR;
 
-RubiksCubeFaceCubieTile.prototype.color = NOCOLOR;
-
-/**
- * Get the color of this tile
- * @returns COLOR
- */
-RubiksCubeFaceCubieTile.prototype.getColor = function() {
-    return this.color;
+    /**
+     * Get the color of this tile
+     * @returns COLOR
+     */
+    this.getColor = function () {
+        return color;
+    }
 }
