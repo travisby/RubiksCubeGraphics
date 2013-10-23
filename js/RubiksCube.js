@@ -1,6 +1,3 @@
-//I'm just making sure I can git.
-
-
 /**
  * Generates a RubiksCube
  * @constructor
