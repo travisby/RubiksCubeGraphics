@@ -1,3 +1,7 @@
+const X_AXIS = 0;
+const Y_AXIS = 1;
+const Z_AXIS = 2;
+
 function Shape(shader, projection) {
     var _shader = shader;
     var _projection = projection;
@@ -34,4 +38,21 @@ function Shape(shader, projection) {
         
         gl.drawArrays( gl.TRIANGLES, 0, _points.length );
      }
+    /**
+     * Sets the points array. Should be used by a subclass. 
+     */ 
+    var setPoints = function(points) {
+        _points = points;
+    }
+
+    /**
+     * Sets the colors array. Should be used by a subclass. 
+     */
+    var setColors = function(colors) {
+        _colors = colors;
+    }
+
+    this.move = function(distance, axis) {
+        
+    }
 }
