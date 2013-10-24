@@ -2,7 +2,7 @@
  * A simple WebGl Cuboid (3D rectangle).
  */
 
-function GlCuboid(width, height, depth, colors, shader, camera) {
+function SolidCuboid(width, height, depth, colors, shader, camera) {
     this.setCamera(camera);
     this.setShader(shader);
     
@@ -10,7 +10,7 @@ function GlCuboid(width, height, depth, colors, shader, camera) {
     var _height = height;  
     var _depth = depth;
     
-    var _vertices;
+    var _vertices = [[]];
     var _points = [];
         
     setVertices();
@@ -18,35 +18,48 @@ function GlCuboid(width, height, depth, colors, shader, camera) {
      
     var setVertices = function()
     {
+        var test = 1;
         _vertices = [
-            [-(_width / 2),  (_height / 2),  (_depth / 2)],
+            [-(_width / 2),  (_height / 2),  (_depth / 2)],    
             [ (_width / 2),  (_height / 2),  (_depth / 2)],       
             [ (_width / 2), -(_height / 2),  (_depth / 2)],
             [-(_width / 2), -(_height / 2),  (_depth / 2)],       
             [-(_width / 2),  (_height / 2), -(_depth / 2)],
             [ (_width / 2),  (_height / 2), -(_depth / 2)],       
             [ (_width / 2), -(_height / 2), -(_depth / 2)],
-            [-(_width / 2), -(_height / 2), -(_depth / 2)],       
+            [-(_width / 2), -(_height / 2), -(_depth / 2)]
+        ]; 
     }
 
     var makeCuboid = function()
     {
-        makeSide(1,2,3,4, colors[0]);
-        makeSide(1,2,3,4, colors[0]);
-        makeSide(1,2,3,4, colors[0]);
-        makeSide(1,2,3,4, colors[0]);
-        makeSide(1,2,3,4, colors[0]);
-        makeSide(1,2,3,4, colors[0]);           
+        makeSide(0,1,2,3, colors[0]);
+        makeSide(4,0,3,7, colors[1]);
+        makeSide(4,5,1,0, colors[2]);
+        makeSide(1,5,6,2, colors[3]);
+        makeSide(5,4,7,6, colors[4]);
+        makeSide(7,6,2,3, colors[5]);           
     }
 
     var makeSide = function( topLeft, topRight, bottomRight, bottomleft, color )
     {
-        _points.push(vec4(_vertices[topLeft]);
-        _points.push(vec4(_vertices[topRight]);
-        _points.push(vec4(_vertices[bottomRight]);
-        _points.push(vec4(_vertices[topLeft]);
-        _points.push(vec4(_vertices[bottomRight]);
-        _points.push(vec4(_vertices[bottomLeft]);
+        _points.push(vec4(_vertices[topLeft]));
+        _colors.push(color);
+        
+        _points.push(vec4(_vertices[topRight]));
+        _colors.push(color); 
+
+        _points.push(vec4(_vertices[bottomRight]));
+        _colors.push(color);
+        
+        _points.push(vec4(_vertices[topLeft]));           
+         _colors.push(color);
+        
+        _points.push(vec4(_vertices[bottomRight]));
+        _colors.push(color);
+
+        _points.push(vec4(_vertices[bottomLeft]));
+        _colors.push(color);   
     }
 
 
@@ -63,4 +76,4 @@ function GlCuboid(width, height, depth, colors, shader, camera) {
     }
 }
 
-GlCuboid.prototype = new Shape();
+SolidCuboid.prototype = new Shape();
