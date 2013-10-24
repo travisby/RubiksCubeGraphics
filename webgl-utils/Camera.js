@@ -15,7 +15,7 @@ function Camera() {
     */
     this.eyeLocation = vec3();
     this.eyeDirection = vec3();
-    this.upDirection vec3();
+    this.upDirection = vec3();
 
     /**
     * Moves the camera to the specifed (x,y,z) coordinates
@@ -34,7 +34,7 @@ function Camera() {
     /**
     * Positions the camera view so that the specifed (x,y,z) coordinates are above the top of the camera
     */ 
-    this.setUpDirection = function(x,y,z) {
+    this.direction = function(x,y,z) {
         this.upDirection = vec3(x,y,z);
     }
     
@@ -56,6 +56,6 @@ function Camera() {
     * Computes and returns the projection matrix
     */ 
     this.getProjection = function() {
-        return mult(this.projection, lookAt(this.eyeLocation, this.eyeDirection, this.upDirection);
+        return mult(this.projection, lookAt(this.eyeLocation, this.eyeDirection, this.upDirection));
     }
 }
