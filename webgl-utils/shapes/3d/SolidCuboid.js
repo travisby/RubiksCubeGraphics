@@ -1,3 +1,5 @@
+//Git did not like my rename even though I redid it multiple times... Lost history for the file. :(
+
 /**
  * A simple WebGl Cuboid (3D rectangle).
  */
