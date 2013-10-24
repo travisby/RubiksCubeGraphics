@@ -31,7 +31,12 @@ function GlCuboid(width, height, depth, colors, shader, camera) {
 
     var makeCuboid = function()
     {
-        makeSide(1,2,3,4, colors[0]);            
+        makeSide(1,2,3,4, colors[0]);
+        makeSide(1,2,3,4, colors[0]);
+        makeSide(1,2,3,4, colors[0]);
+        makeSide(1,2,3,4, colors[0]);
+        makeSide(1,2,3,4, colors[0]);
+        makeSide(1,2,3,4, colors[0]);           
     }
 
     var makeSide = function( topLeft, topRight, bottomRight, bottomleft, color )
