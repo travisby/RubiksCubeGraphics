@@ -2,24 +2,60 @@
  * A simple WebGl Cuboid (3D rectangle).
  */
 
-function GlCuboid(camera) {
-    var _vertices = [[]];
-    var _camera = camera;
-
-    this.draw = function() {
-
-    }
+function GlCuboid(width, height, depth, colors, shader, camera) {
+    this.setCamera(camera);
+    this.setShader(shader);
     
-    this.move = function() {
-
+    var _width = width;
+    var _height = height;  
+    var _depth = depth;
+    
+    var _vertices;
+    var _points = [];
+        
+    setVertices();
+    makeCuboid();
+     
+    var setVertices = function()
+    {
+        _vertices = [
+            [-(_width / 2),  (_height / 2),  (_depth / 2)],
+            [ (_width / 2),  (_height / 2),  (_depth / 2)],       
+            [ (_width / 2), -(_height / 2),  (_depth / 2)],
+            [-(_width / 2), -(_height / 2),  (_depth / 2)],       
+            [-(_width / 2),  (_height / 2), -(_depth / 2)],
+            [ (_width / 2),  (_height / 2), -(_depth / 2)],       
+            [ (_width / 2), -(_height / 2), -(_depth / 2)],
+            [-(_width / 2), -(_height / 2), -(_depth / 2)],       
     }
 
-    this.rotate = function() {
-
+    var makeCuboid = function()
+    {
+        makeSide(1,2,3,4, colors[0]);            
     }
 
-    this.orbit = function() {
-
+    var makeSide = function( topLeft, topRight, bottomRight, bottomleft, color )
+    {
+        _points.push(vec4(_vertices[topLeft]);
+        _points.push(vec4(_vertices[topRight]);
+        _points.push(vec4(_vertices[bottomRight]);
+        _points.push(vec4(_vertices[topLeft]);
+        _points.push(vec4(_vertices[bottomRight]);
+        _points.push(vec4(_vertices[bottomLeft]);
     }
-} 
 
+
+    this.setHeight(height) {
+       _height = height; 
+    }
+
+    this.setWidth(width) {
+        _width = width;
+    }
+
+    this.setDepth(depth) {
+        _depth = depth;
+    }
+}
+
+GlCuboid.prototype = new Shape();
