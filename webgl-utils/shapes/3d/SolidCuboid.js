@@ -65,15 +65,15 @@ function SolidCuboid(width, height, depth, colors, shader, camera) {
     }
 
 
-    this.setHeight(height) {
+    this.setHeight = function(height) {
        _height = height; 
     }
 
-    this.setWidth(width) {
+    this.setWidth = function(width) {
         _width = width;
     }
 
-    this.setDepth(depth) {
+    this.setDepth = function(depth) {
         _depth = depth;
     }
 }
