@@ -5,8 +5,8 @@
  */
 
 function SolidCuboid(width, height, depth, colors, shader, camera) {
-    this.setCamera(camera);
-    this.setShader(shader);
+    setCamera(camera);
+    setShader(shader);
     
     var _width = width;
     var _height = height;  

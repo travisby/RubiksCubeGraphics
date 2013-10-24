@@ -1,7 +1,7 @@
 /**
 * A simple WebGl Camera.
 *
-* Authors: Travis Beatty and Jacob Leach 
+* @author Travis Beatty, Jacob Leach 
 */
 
 function Camera() {

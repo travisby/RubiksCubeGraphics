@@ -5,7 +5,7 @@ const Z_AXIS = 2;
 
 function Shape() {
     if(!gl) {
-        console.log("Not yet");
+        console.log("Canvas needs to be initilized");
     }
     else {
         var _shader;
@@ -38,7 +38,7 @@ function Shape() {
             else {    
                 gl.useProgram(_shader);
 
-                gl.uniformMatrix4fv(gl.getUniformLocation(_shader, "projection"), false, flatten(camera));
+                gl.uniformMatrix4fv(gl.getUniformLocation(_shader, "projection"), false, flatten(_camera.getProjection()));
                 gl.uniformMatrix4fv(gl.getUniformLocation(_shader, "transformation"), false, flatten(_transformation));
                 gl.uniformMatrix4fv(gl.getUniformLocation(_shader, "rotation"), false, flatten(_rotation));
             
