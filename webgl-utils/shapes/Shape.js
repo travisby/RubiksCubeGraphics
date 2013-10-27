@@ -11,7 +11,6 @@ function Shape() {
         var _shader;
         var _camera;
         var _transformation = mat4();
-        var _rotation = mat4();  
         
         //The array of point vectors that are passed down to the shader   
         var _points = [];
@@ -40,7 +39,6 @@ function Shape() {
 
                 gl.uniformMatrix4fv(gl.getUniformLocation(_shader, "projection"), false, flatten(_camera.getProjection()));
                 gl.uniformMatrix4fv(gl.getUniformLocation(_shader, "transformation"), false, flatten(_transformation));
-                gl.uniformMatrix4fv(gl.getUniformLocation(_shader, "rotation"), false, flatten(_rotation));
             
                 gl.bindBuffer( gl.ARRAY_BUFFER, _colorBuffer );
                 var colorVertex = gl.getAttribLocation( _shader, "vColor");
