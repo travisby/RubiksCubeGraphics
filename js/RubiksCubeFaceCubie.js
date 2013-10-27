@@ -1,17 +1,23 @@
 /**
- * Builds an individual cube of a face of a Rubiks Cube
+ * Builds a new Cubie based on the faces and colors
+ * @param {Array} of faces
+ * @param {Array} of colors that is sorted by the same index of faces
  * @constructor
  */
-function RubiksCubeFaceCubie() {
+function RubiksCubeFaceCubie(facesIBelongTo, colorsOfThoseFaces) {
+    // Cubies are represented by a KV store where the face is the key, and the color is the value
+    var representation = {};
 
-    var tiles = [];
+    for (var i = 0; i < facesIBelongTo.length; i++) {
+        representation[facesIBelongTo[i]] = colorsOfThoseFaces[i];
+    }
 
     /**
-     * Get the possible tiles part of our cubie
-     * @returns {Array}
+     * Returns the color of a cubie face
+     * @param face
+     * @returns {*|COLOR}
      */
-
-    this.getTiles = function () {
-        return tiles;
+    this.getColor = function(face) {
+        return representation[face];
     }
 }
