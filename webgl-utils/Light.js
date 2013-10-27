@@ -9,3 +9,5 @@ function Light() {
     this.specularMaterial = vec4();
     this.shininess;
 }
+
+

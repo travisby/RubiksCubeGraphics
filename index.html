@@ -4,26 +4,28 @@
     <title>RubiksCube</title>
         
     <script id="vertex-shader" type="x-shader/x-vertex">
-        attribute  vec4 vertexPosition;
-        attribute  vec3 vertexNormal;
-        varying vec4 vertexColor;
+        attribute  vec4 positionVertex;
+        //attribute  vec3 normalVertex;
+        attribute vec4 colorVertex;
 
-        uniform vec4 ambientProduct, diffuseProduct, specularProduct;
+        varying vec4 color;
+
+       // uniform vec4 ambientProduct, diffuseProduct, specularProduct;
         uniform mat4 transformation;
         uniform mat4 projection;
-        uniform vec4 lightPosition;
-        uniform float shininess;
+        //uniform vec4 lightPosition;
+       // uniform float shininess;
         void main()
         {
-            vec3 pos = -(transformation * vertexPosition).xyz;
+           /* vec3 pos = -(transformation * positionVertex).xyz;
             vec3 light = lightPosition.xyz;
             vec3 L = normalize( light - pos );
-
+            
             
             vec3 E = normalize( -pos );
             vec3 H = normalize( L + E );
             
-            vec4 NN = vec4(vertexNormal,0);
+            vec4 NN = vec4(normalVertex,0);
 
             // Transform vertex normal into eye coordinates
                
@@ -41,11 +43,13 @@
             if( dot(L, N) < 0.0 ) {
             specular = vec4(0.0, 0.0, 0.0, 1.0);
             } 
+            */
 
-            gl_Position = projection * transformation * vertexPosition;
-            vertexColor = ambient + diffuse +specular;
+            color = colorVertex;
+            gl_Position = projection * transformation * positionVertex;
+            //colorVertex = ambient + diffuse +specular;
             
-            vertexColor.a = 1.0;
+            //colorVertex.a = 1.0;
         }
     </script>
     <script id="fragment-shader" type="x-shader/x-fragment">
@@ -53,17 +57,17 @@
         precision highp float;
         #endif
 
-        varying vec4 vertexColor;
+        varying vec4 color;
 
         void
         main()
         {
-            gl_FragColor = vertexColor;
+            gl_FragColor = color;
         }
     </script>
 
-    <script type="text/javascript" src="webgl-utils/Camera.js"></script>
     <script type="text/javascript" src="js/init.js"></script>
+    <script type="text/javascript" src="webgl-utils/Camera.js"></script>
     <script type="text/javascript" src="vendor/js/webgl-utils.js"></script>
     <script type="text/javascript" src="vendor/js/initShaders.js"></script>
     <script type="text/javascript" src="vendor/js/mv.js"></script>
