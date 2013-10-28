@@ -4,15 +4,15 @@
     <title>RubiksCube</title>
         
     <script id="vertex-shader" type="x-shader/x-vertex">
-        attribute  vec4 positionVertex;
-        attribute  vec3 normalVertex;
-        varying vec4 colorVertex;
+        attribute   vec4 positionVertex;
+        attribute   vec3 normalVertex;
+        varying     vec4 colorVertex;
 
-        uniform vec4 ambientProduct, diffuseProduct, specularProduct;
-        uniform mat4 transformation;
-        uniform mat4 projection;
-        uniform vec4 lightPosition;
-        uniform float shininess;
+        uniform     vec4 ambientProduct, diffuseProduct, specularProduct;
+        uniform     mat4 transformation;
+        uniform     mat4 projection;
+        uniform     vec4 lightPosition;
+        uniform     float shininess;
         void main()
         {
             vec3 pos = -(transformation * positionVertex).xyz;
@@ -24,12 +24,9 @@
             vec3 H = normalize( L + E );
             
             vec4 NN = vec4(normalVertex,0);
-
-            // Transform vertex normal into eye coordinates
                
             vec3 N = normalize( (transformation*NN).xyz);
 
-            // Compute terms in the illumination equation
             vec4 ambient = ambientProduct;
 
             float Kd = max( dot(L, N), 0.0 );
@@ -39,7 +36,7 @@
             vec4  specular = Ks * specularProduct;
             
             if( dot(L, N) < 0.0 ) {
-            specular = vec4(0.0, 0.0, 0.0, 1.0);
+                specular = vec4(0.0, 0.0, 0.0, 1.0);
             } 
             
             gl_Position = projection * transformation * positionVertex;

@@ -4,16 +4,16 @@ const Y_AXIS = 1;
 const Z_AXIS = 2;
 
 var Shape = function(shader, camera, light) {
-        this._shader = shader;
-        this._camera = camera;
-        this._transformation = mat4();
-        this._light = light;
+        this.shader = shader;
+        this.camera = camera;
+        this.transformation = mat4();
+        this.light = light;
  
         //The array of point vectors that are passed down to the shader   
-        this._points = [];
+        this.points = [];
         //The array of color vectors that are passed down to the shader
-        this._colors = [];
-        this.normals = []; 
+        this.colors = [];
+        this.normalVectors = []; 
         /**
          * Sets the shader for this shape. 
          *
@@ -22,7 +22,7 @@ var Shape = function(shader, camera, light) {
          * @param shader The shader program this shape should use
          */ 
         this.setShader = function(shader) {
-            _shader = shader;
+            shader = shader;
         }
         
         /**
@@ -33,48 +33,51 @@ var Shape = function(shader, camera, light) {
          * @param camera The camera this shape should use
          */ 
         this.setCamera = function(camera) {
-            _camera = camera;
+            camera = camera;
         }
         
         /**
          * Sets the points array. Should be used by a subclass. 
          */ 
         this.setPoints = function(points) {
-            _points = points;
+            points = points;
         }
 
         /**
          * Sets the colors array. Should be used by a subclass. 
          */
         this.setColors = function(colors) {
-            _colors = colors;
+            colors = colors;
         }
         
 }
 
 Shape.prototype.draw = function() {
-    if(this._shader == null || this._camera == null || gl == null) {
+    if(this.shader == null || this.camera == null || gl == null) {
         console.error("Shape not initilizaed properly.");
     }
     else {    
-        gl.useProgram(this._shader);
+        gl.useProgram(this.shader);
         
-        gl.uniformMatrix4fv(gl.getUniformLocation(this._shader, "projection"), false, flatten(this._camera.getProjection()));
-        gl.uniformMatrix4fv(gl.getUniformLocation(this._shader, "transformation"), false, flatten(this._transformation));
+        gl.uniformMatrix4fv(gl.getUniformLocation(this.shader, "projection"), false, flatten(this.camera.getProjection()));
+        gl.uniformMatrix4fv(gl.getUniformLocation(this.shader, "transformation"), false, flatten(this.transformation));
         
-        gl.uniform4fv(gl.getUniformLocation(this._shader, "ambientProduct"), flatten(this._light.ambientProduct()));
-        gl.uniform4fv(gl.getUniformLocation(this._shader, "diffuseProduct"), flatten(this._light.diffuseProduct()));
-        gl.uniform4fv(gl.getUniformLocation(this._shader, "specularProduct"), flatten(this._light.specularProduct()));  
-        gl.uniform4fv(gl.getUniformLocation(this._shader, "lightPosition"), flatten(this._light.position));
-        gl.uniform1f(gl.getUniformLocation(this._shader, "shininess"), this._light.shininess());
- 
+        gl.uniform4fv(gl.getUniformLocation(this.shader, "ambientProduct"), flatten(this.light.ambientProduct()));
+        gl.uniform4fv(gl.getUniformLocation(this.shader, "diffuseProduct"), flatten(this.light.diffuseProduct()));
+        gl.uniform4fv(gl.getUniformLocation(this.shader, "specularProduct"), flatten(this.light.specularProduct()));  
+        gl.uniform4fv(gl.getUniformLocation(this.shader, "lightPosition"), flatten(this.light.position));
+        gl.uniform1f(gl.getUniformLocation(this.shader, "shininess"), this.light.shininess());
         
-        gl.bindBuffer( gl.ARRAY_BUFFER, this._pointBuffer );
-        var positionVertex = gl.getAttribLocation( this._shader, "positionVertex" );
+        gl.bindBuffer( gl.ARRAY_BUFFER, this.pointBuffer );
+        var positionVertex = gl.getAttribLocation( this.shader, "positionVertex" );
         gl.vertexAttribPointer( positionVertex, 4, gl.FLOAT, false, 0, 0 );
         gl.enableVertexAttribArray( positionVertex );
         
-        gl.drawArrays( gl.TRIANGLES, 0, this._points.length);
+        var vNormal = gl.getAttribLocation( this.shader, "normalVertex" );
+        gl.vertexAttribPointer( vNormal, 4, gl.FLOAT, false, 0, 0 );
+        gl.enableVertexAttribArray( vNormal);
+        
+        gl.drawArrays( gl.TRIANGLES, 0, this.points.length);
     }
 }
 
@@ -94,7 +97,7 @@ Shape.prototype.move = function(distance, axis) {
         }
         
         delta[axis] = distance;
-        this.transform = mult(translate(delta), this._transformation);    
+        this.transform = mult(translate(delta), this.transformation);    
     }
     
     /**
@@ -137,19 +140,16 @@ Shape.prototype.setupWebGL = function() {
         
         var nBuffer = gl.createBuffer();
         gl.bindBuffer( gl.ARRAY_BUFFER, nBuffer);
-        gl.bufferData( gl.ARRAY_BUFFER, flatten(this.normals), gl.STATIC_DRAW );
+        gl.bufferData( gl.ARRAY_BUFFER, flatten(this.normalVectors), gl.STATIC_DRAW );
         
-        var vNormal = gl.getAttribLocation( this._shader, "normalVertex" );
-        gl.vertexAttribPointer( vNormal, 4, gl.FLOAT, false, 0, 0 );
-        //gl.enableVertexAttribArray( vNormal);
 
         //Creates a buffer for the point vector data 
-        this._colorBuffer = gl.createBuffer();
-        gl.bindBuffer( gl.ARRAY_BUFFER, this._colorBuffer); 
-        gl.bufferData( gl.ARRAY_BUFFER, flatten(this._colors), gl.STATIC_DRAW );
+        this.colorBuffer = gl.createBuffer();
+        gl.bindBuffer( gl.ARRAY_BUFFER, this.colorBuffer); 
+        gl.bufferData( gl.ARRAY_BUFFER, flatten(this.colors), gl.STATIC_DRAW );
         
         //Creates a buffer for the color vector data
-        this._pointBuffer = gl.createBuffer();
-        gl.bindBuffer( gl.ARRAY_BUFFER, this._pointBuffer);
-        gl.bufferData( gl.ARRAY_BUFFER, flatten(this._points), gl.STATIC_DRAW );
+        this.pointBuffer = gl.createBuffer();
+        gl.bindBuffer( gl.ARRAY_BUFFER, this.pointBuffer);
+        gl.bufferData( gl.ARRAY_BUFFER, flatten(this.points), gl.STATIC_DRAW );
 }
