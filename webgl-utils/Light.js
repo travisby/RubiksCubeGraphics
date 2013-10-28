@@ -1,41 +1,38 @@
-function Light(material) {
-    this.position;
-    this.ambient;
-    this.diffuse;
-    this.specular;
-    this.material = material;
+//TODO: Write comments
+
+function Light() {
+    this.position   = vec4();
+    this.ambient    = vec4();
+    this.diffuse    = vec4();
+    this.specular   = vec4();
 }
 
-Light.prototype.setAmbient = function(a, b, c, d) {
-    this.ambient = vec4(a,b,c,d);
+Light.prototype.setAmbient = function(red, green, blue, alpha) {
+    this.ambient = vec4(red, green, blue, alpha);
 }
 
-Light.prototype.setDiffuse = function(a, b, c, d) {
-    this.diffuse = vec4(a,b,c,d);
+Light.prototype.setDiffuse = function(red, green, blue, alpha) {
+    this.diffuse = vec4(red, green, blue, alpha);
 }
 
-Light.prototype.setPosition = function(a,b,c,d) {
-    this.position = vec4(a,b,c,d);
+Light.prototype.setPosition = function(red, green, blue, alpha) {
+    this.position = vec4(red, green, blue, alpha);
 }
 
-Light.prototype.setSpecular = function(a,b,c,d) {
-    this.specular = vec4(a,b,c,d);
+Light.prototype.setSpecular = function(red, green, blue, alpha) {
+    this.specular = vec4(red, green, blue, alpha);
 }
 
-Light.prototype.shininess = function() {
-    return this.material.shininess;
+Light.prototype.ambientProduct = function(material) {
+    return mult(this.ambient, material.ambient);
 }
 
-Light.prototype.ambientProduct = function() {
-    return mult(this.ambient, this.material.ambient);
+Light.prototype.diffuseProduct = function(material) {
+    return mult(this.diffuse, material.diffuse);
 }
 
-Light.prototype.diffuseProduct = function() {
-    return mult(this.diffuse, this.material.diffuse);
-}
-
-Light.prototype.specularProduct = function() {
-    return mult(this.specular, this.material.specular);
+Light.prototype.specularProduct = function(material) {
+    return mult(this.specular, material.specular);
 } 
 
 

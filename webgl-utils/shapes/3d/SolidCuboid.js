@@ -4,38 +4,41 @@
  * A simple WebGl Cuboid (3D rectangle).
  */
 
-function SolidCuboid(width, height, depth, colors, shader, camera, light) {
+function SolidCuboid(shader, camera, light, width, height, depth) {
+    //Calls Shape's constructor as far as I can tell.
+    //It works so leave it
     Shape.apply(this, [shader, camera, light]);
-    this.width = width;
-    this.height = height;  
-    this.depth = depth;
+
+    var width  = width;
+    var height = height;  
+    var depth  = depth;
     
     this.vertices = [[]];
     
-    this.setVertices = function()
+    var setVertices = function()
     {
-        this.vertices = [
-            [-(this.width / 2),  (this.height / 2),  (this.depth / 2)],    
-            [ (this.width / 2),  (this.height / 2),  (this.depth / 2)],       
-            [ (this.width / 2), -(this.height / 2),  (this.depth / 2)],
-            [-(this.width / 2), -(this.height / 2),  (this.depth / 2)],       
-            [-(this.width / 2),  (this.height / 2), -(this.depth / 2)],
-            [ (this.width / 2),  (this.height / 2), -(this.depth / 2)],       
-            [ (this.width / 2), -(this.height / 2), -(this.depth / 2)],
-            [-(this.width / 2), -(this.height / 2), -(this.depth / 2)]
+        vertices = [
+            [-(width / 2),  (height / 2),  (depth / 2)],    
+            [ (width / 2),  (height / 2),  (depth / 2)],       
+            [ (width / 2), -(height / 2),  (depth / 2)],
+            [-(width / 2), -(height / 2),  (depth / 2)],       
+            [-(width / 2),  (height / 2), -(depth / 2)],
+            [ (width / 2),  (height / 2), -(depth / 2)],       
+            [ (width / 2), -(height / 2), -(depth / 2)],
+            [-(width / 2), -(height / 2), -(depth / 2)]
         ]; 
     }
 
-    this.makeCuboid = function() {
-       this.makeSide(0,1,2,3, colors[0]);
-       this.makeSide(4,0,3,7, colors[1]);
-       this.makeSide(4,5,1,0, colors[2]);
-       this.makeSide(1,5,6,2, colors[3]);
-       this.makeSide(5,4,7,6, colors[4]);
-       this.makeSide(7,6,2,3, colors[5]);           
+    var makeCuboid = function() {
+       makeSide(0,1,2,3, colors[0]);
+       makeSide(4,0,3,7, colors[1]);
+       makeSide(4,5,1,0, colors[2]);
+       makeSide(1,5,6,2, colors[3]);
+       makeSide(5,4,7,6, colors[4]);
+       makeSide(7,6,2,3, colors[5]);           
     }
 
-    this.makeSide = function( topLeft, topRight, bottomRight, bottomLeft, color )
+    var makeSide = function( topLeft, topRight, bottomRight, bottomLeft, color )
     {
         var t1 = subtract(this.vertices[topRight], this.vertices[topLeft]);
         var t2 = subtract(this.vertices[bottomRight], this.vertices[topRight]);
@@ -66,24 +69,11 @@ function SolidCuboid(width, height, depth, colors, shader, camera, light) {
         this.points.push(vec4(this.vertices[bottomLeft]));
         this.colors.push(vec4(color));   
         this.normalVectors.push(normal);
-     }
-
-
-    this.setHeight = function(height) {
-       this.height = height; 
     }
-
-    this.setWidth = function(width) {
-        this.width = width;
-    }
-
-    this.setDepth = function(depth) {
-        this.depth = depth;
-    }
-  
-    this.setVertices();
-    this.makeCuboid();
-    this.setupWebGL();
+     
+    setVertices();
+    makeCuboid();
+    setupWebGL();
 }
 
 SolidCuboid.prototype = new Shape();
