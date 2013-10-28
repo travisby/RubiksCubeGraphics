@@ -66,6 +66,10 @@ Shape.prototype.draw = function() {
     gl.vertexAttribPointer( vertexColor, 4, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( vertexColor );
     
+    //gl.bindBuffer( gl.ARRAY_BUFFER, this.normalBuffer );
+    var normalVertex = gl.getAttribLocation( this.shader, "normalVertex" );
+    gl.vertexAttribPointer( normalVertex, 4, gl.FLOAT, false, 0, 0 );
+    gl.enableVertexAttribArray( normalVertex );
     
     gl.drawArrays( gl.TRIANGLES, 0, this.points.length);
 }

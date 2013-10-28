@@ -43,30 +43,31 @@ function SolidCuboid(shader, camera, light, material, colors, width, height, dep
         var t2 = subtract(this.vertices[bottomRight], this.vertices[topRight]);
         var normal = cross(t1, t2);
         normal = vec3(normal);
-        //normal = normalize(normal);
+        normal = normalize(normal);
+        
         this.points.push(vec4(this.vertices[topLeft]));
         this.colorVectors.push(vec4(color));
-        //this.normalVectors.push(normal);
+        this.normalVectors.push(normal);
         
         this.points.push(vec4(this.vertices[topRight]));
         this.colorVectors.push(vec4(color)); 
-        //this.normalVectors.push(normal);
+        this.normalVectors.push(normal);
         
         this.points.push(vec4(this.vertices[bottomRight]));
         this.colorVectors.push(vec4(color));                
-       // this.normalVectors.push(normal);
+        this.normalVectors.push(normal);
 
         this.points.push(vec4(this.vertices[topLeft]));           
         this.colorVectors.push(vec4(color));
-        //this.normalVectors.push(normal);
+        this.normalVectors.push(normal);
 
         this.points.push(vec4(this.vertices[bottomRight]));
         this.colorVectors.push(vec4(color));
-        //this.normalVectors.push(normal);
+        this.normalVectors.push(normal);
 
         this.points.push(vec4(this.vertices[bottomLeft]));
         this.colorVectors.push(vec4(color));   
-        //this.normalVectors.push(normal);
+        this.normalVectors.push(normal);
     }
      
     this.setVertices();
