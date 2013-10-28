@@ -21,12 +21,20 @@ function RubiksCube() {
 }
 
 /**
- * Facial representation of our cube in order... U, D, F, B, L, R
+ * Facial representation of our cube in order... B, L, D, R, F, U
  * @returns {Face[]}
  */
 RubiksCube.prototype.getFaces = function() {
-  // TODO actually faces
-  return [new Face(), new Face(), new Face(), new Face(), new Face(), new Face()];
+  var cubies = this._getCubies();
+
+  return [
+      new Face([cubies[0], cubies[1], cubies[2], cubies[3], cubies[4], cubies[5],cubies[6], cubies[7], cubies[8]]),
+      new Face([cubies[3], cubies[5], cubies[8], cubies[9], cubies[11], cubies[13], cubies[10], cubies[12], cubies[14]]),
+      new Face([cubies[8], cubies[7], cubies[6], cubies[13], cubies[16], cubies[15], cubies[14], cubies[18], cubies[17]]),
+      new Face([cubies[0], cubies[3], cubies[6], cubies[20], cubies[22], cubies[15], cubies[19], cubies[21], cubies[17]]),
+      new Face([cubies[14], cubies[28], cubies[17], cubies[12], cubies[24], cubies[21], cubies[10], cubies[23], cubies[19]]),
+      new Face([cubies[2], cubies[1], cubies[0], cubies[9], cubies[25], cubies[20], cubies[11], cubies[23], cubies[19]])
+  ];
 }
 
 RubiksCube.prototype.draw = function() {
@@ -43,6 +51,21 @@ RubiksCube.prototype.draw = function() {
  * @constructor
  */
 function RubiksCubeFactoryFromFile(file) {
+  // sample file:
+  /*
+     GGW
+     RRG
+     RRG
+  OWWGGOYYR
+  OGOYYYRBR
+  YYYRBGRWW
+     BOY
+     BOB
+     BOB
+     OGO
+     WWB
+     WWB
+  */
   // TODO build from file
   var cube = new RubiksCube();
 

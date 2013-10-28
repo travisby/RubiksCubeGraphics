@@ -1,10 +1,16 @@
 /**
- * Generates one face of a Rubiks Cube
  *
- * A face is defined by its color
+ * @param {Cubie[]} cubies
  * @constructor
  */
-function Face() {
+function Face(cubies) {
+
+  /**
+   *
+   * @type {Cubie[]}
+   */
+  var myCubies = cubies;
+
 }
 
 Face.prototype.turn = function() {
