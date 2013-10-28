@@ -44,6 +44,32 @@ RubiksCube.prototype.draw = function() {
     faces[i].draw();
   }
 }
+
+/**
+ * Rotate face 90 degrees counter-clockwise
+ * @param {Face} face
+ */
+RubiksCube.prototype.turnFace = function(face) {
+  face.turn();
+}
+
+/**
+ * Retrieve a face based on its color
+ * @param {Color} color
+ * @returns {Face}
+ */
+RubiksCube.prototype.getFaceByColor = function(color) {
+  var faces = this.getFaces();
+
+  for (var i = 0; i < faces.length; i++) {
+    if (faces[i].getColor() == color) {
+      return faces[i];
+    }
+  }
+  // SOMETHING BROKE
+  return null;
+}
+
 /**
  * Builds a RubiksCube by using a file handle to get the colors
  * @param file handle to build from
