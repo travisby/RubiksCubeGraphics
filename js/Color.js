@@ -32,3 +32,37 @@ BLUE = new Blue();
 ORANGE = new Orange();
 GREEN = new Green();
 YELLOW = new Yellow();
+
+function getColorFromCharacter(char) {
+  switch (char) {
+    case 'W':
+      return WHITE;
+    case 'R':
+      return RED;
+    case 'B':
+      return BLUE;
+    case 'O':
+      return ORANGE;
+    case 'G':
+      return GREEN;
+    case 'Y':
+      return YELLOW;
+    default:
+      return NOCOLOR;
+  }
+}
+
+/**
+ * Converts an array of characters like ['O', 'B', 'W'] into colors like [new Orange(), new Blue(), new White()]
+ * @param {String[]} colors
+ * @returns {Color[]}
+ */
+function stringArrayToColorArray(colors) {
+
+  var newColors = [];
+
+  for (var i = 0; i <= colors.length; i++) {
+    newColors[i] = getColorFromCharacter(colors[i]);
+  }
+  return newColors;
+}

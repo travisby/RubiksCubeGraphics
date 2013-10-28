@@ -91,39 +91,3 @@ function UpFace(cubies) {
 }
 UpFace.prototype = new Face();
 UpFace.prototype.constructor = Face;
-
-/**
- * Converts an array of characters like ['O', 'B', 'W'] into colors like [new Orange(), new Blue(), new White()]
- * @param {String[]} colors
- * @returns {Color[]}
- */
-function stringArrayToColorArray(colors) {
-
-  var newColors = [];
-
-  for (var i = 0; i <= colors.length; i++) {
-    switch (colors[i]) {
-      case 'G':
-        newColors[i] = GREEN;
-        break;
-      case 'W':
-        newColors[i] = WHITE;
-        break;
-      case 'R':
-        newColors[i] = RED;
-        break;
-      case 'O':
-        newColors[i] = ORANGE;
-        break;
-      case 'Y':
-        newColors[i] = YELLOW;
-        break;
-      case 'B':
-        newColors[i] = BLUE;
-      default:
-        newColors[i] = NOCOLOR;
-    }
-
-  }
-  return newColors;
-}
