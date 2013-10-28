@@ -138,16 +138,11 @@ Shape.prototype.orbit = function(angle, axis) {
 
 Shape.prototype.setupWebGL = function() {
         
-        var nBuffer = gl.createBuffer();
-        gl.bindBuffer( gl.ARRAY_BUFFER, nBuffer);
+        //Creates a buffer for the normal vector data
+        var normalBuffer = gl.createBuffer();
+        gl.bindBuffer( gl.ARRAY_BUFFER, normalBuffer);
         gl.bufferData( gl.ARRAY_BUFFER, flatten(this.normalVectors), gl.STATIC_DRAW );
-        
 
-        //Creates a buffer for the point vector data 
-        this.colorBuffer = gl.createBuffer();
-        gl.bindBuffer( gl.ARRAY_BUFFER, this.colorBuffer); 
-        gl.bufferData( gl.ARRAY_BUFFER, flatten(this.colors), gl.STATIC_DRAW );
-        
         //Creates a buffer for the color vector data
         this.pointBuffer = gl.createBuffer();
         gl.bindBuffer( gl.ARRAY_BUFFER, this.pointBuffer);
