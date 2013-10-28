@@ -4,8 +4,8 @@
  * A simple WebGl Cuboid (3D rectangle).
  */
 
-function SolidCuboid(width, height, depth, colors, shader, camera, gl) {
-    Shape.apply(this, [shader, camera, gl]);
+function SolidCuboid(width, height, depth, colors, shader, camera, light) {
+    Shape.apply(this, [shader, camera, light]);
     this._width = width;
     this._height = height;  
     this._depth = depth;
@@ -37,24 +37,36 @@ function SolidCuboid(width, height, depth, colors, shader, camera, gl) {
 
     this.makeSide = function( topLeft, topRight, bottomRight, bottomLeft, color )
     {
+        var t1 = subtract(this._vertices[topRight], this._vertices[topLeft]);
+        var t2 = subtract(this._vertices[bottomRight], this._vertices[topRight]);
+        var normal = cross(t1, t2);
+        var normal = vec3(normal);
+        normal = normalize(normal);
+
         this._points.push(vec4(this._vertices[topLeft]));
         this._colors.push(vec4(color));
+        this.normals.push(normal);
         
         this._points.push(vec4(this._vertices[topRight]));
         this._colors.push(vec4(color)); 
+        this.normals.push(normal);
+        
+        this._points.push(vec4(this._vertices[bottomRight]));
+        this._colors.push(vec4(color));                
+        this.normals.push(normal);
+
+        this._points.push(vec4(this._vertices[topLeft]));           
+        this._colors.push(vec4(color));
+        this.normals.push(normal);
 
         this._points.push(vec4(this._vertices[bottomRight]));
         this._colors.push(vec4(color));
-        
-        this._points.push(vec4(this._vertices[topLeft]));           
-        this._colors.push(vec4(color));
-        
-        this._points.push(vec4(this._vertices[bottomRight]));
-        this._colors.push(vec4(color));
+        this.normals.push(normal);
 
         this._points.push(vec4(this._vertices[bottomLeft]));
         this._colors.push(vec4(color));   
-    }
+        this.normals.push(normal);
+     }
 
 
     this.setHeight = function(height) {

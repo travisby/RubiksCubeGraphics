@@ -5,19 +5,17 @@
         
     <script id="vertex-shader" type="x-shader/x-vertex">
         attribute  vec4 positionVertex;
-        //attribute  vec3 normalVertex;
-        attribute vec4 colorVertex;
+        attribute  vec3 normalVertex;
+        varying vec4 colorVertex;
 
-        varying vec4 color;
-
-       // uniform vec4 ambientProduct, diffuseProduct, specularProduct;
+        uniform vec4 ambientProduct, diffuseProduct, specularProduct;
         uniform mat4 transformation;
         uniform mat4 projection;
-        //uniform vec4 lightPosition;
-       // uniform float shininess;
+        uniform vec4 lightPosition;
+        uniform float shininess;
         void main()
         {
-           /* vec3 pos = -(transformation * positionVertex).xyz;
+            vec3 pos = -(transformation * positionVertex).xyz;
             vec3 light = lightPosition.xyz;
             vec3 L = normalize( light - pos );
             
@@ -43,13 +41,11 @@
             if( dot(L, N) < 0.0 ) {
             specular = vec4(0.0, 0.0, 0.0, 1.0);
             } 
-            */
-
-            color = colorVertex;
-            gl_Position = projection * transformation * positionVertex;
-            //colorVertex = ambient + diffuse +specular;
             
-            //colorVertex.a = 1.0;
+            gl_Position = projection * transformation * positionVertex;
+            colorVertex = ambient + diffuse + specular;
+            
+            colorVertex.a = 1.0;
         }
     </script>
     <script id="fragment-shader" type="x-shader/x-fragment">
@@ -57,16 +53,17 @@
         precision highp float;
         #endif
 
-        varying vec4 color;
+        varying vec4 colorVertex;
 
         void
         main()
         {
-            gl_FragColor = color;
+            gl_FragColor = colorVertex;
         }
     </script>
-
     <script type="text/javascript" src="js/init.js"></script>
+    <script type="text/javascript" src="webgl-utils/Light.js"></script>
+    <script type="text/javascript" src="webgl-utils/Material.js"></script>
     <script type="text/javascript" src="webgl-utils/Camera.js"></script>
     <script type="text/javascript" src="vendor/js/webgl-utils.js"></script>
     <script type="text/javascript" src="vendor/js/initShaders.js"></script>
