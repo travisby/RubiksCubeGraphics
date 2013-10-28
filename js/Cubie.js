@@ -88,3 +88,12 @@ Cubie.prototype.draw = function() {
     tiles[i].draw();
   }
 }
+
+/**
+ * Changes the color of a particular tile of a cube
+ * @param {Color} color
+ * @param {Direction} direction
+ */
+Cubie.prototype.setColor = function(color, direction) {
+  // TODO
+}
