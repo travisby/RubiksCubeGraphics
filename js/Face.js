@@ -33,6 +33,14 @@ Face.prototype.draw = function() {
 }
 
 /**
+ * Get the color of our Face, which is defined by the center cubie
+ * @returns {Color}
+ */
+Face.prototype.getColor = function() {
+  return this._getCubies()[4].getColor();
+}
+
+/**
  * Sets the colors of our Face
  * @param {String[]} colors
  */
