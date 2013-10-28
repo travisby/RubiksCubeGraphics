@@ -33,6 +33,11 @@ ORANGE = new Orange();
 GREEN = new Green();
 YELLOW = new Yellow();
 
+/**
+ * Translates a character to a Color
+ * @param char
+ * @returns Color
+ */
 function getColorFromCharacter(char) {
   switch (char) {
     case 'W':
