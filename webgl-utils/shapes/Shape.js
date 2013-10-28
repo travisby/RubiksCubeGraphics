@@ -14,44 +14,45 @@ var Shape = function(shader, camera, light) {
         //The array of color vectors that are passed down to the shader
         this.colors = [];
         this.normalVectors = []; 
-        /**
-         * Sets the shader for this shape. 
-         *
-         * Note: This method MUST be called to initilize the object completely.
-         * 
-         * @param shader The shader program this shape should use
-         */ 
-        this.setShader = function(shader) {
-            shader = shader;
-        }
-        
-        /**
-         * Sets the camera for this shape. 
-         *
-         * Note: This method MUST be called to initilize the object completely.
-         * 
-         * @param camera The camera this shape should use
-         */ 
-        this.setCamera = function(camera) {
-            camera = camera;
-        }
-        
-        /**
-         * Sets the points array. Should be used by a subclass. 
-         */ 
-        this.setPoints = function(points) {
-            points = points;
-        }
-
-        /**
-         * Sets the colors array. Should be used by a subclass. 
-         */
-        this.setColors = function(colors) {
-            colors = colors;
-        }
         
 }
 
+/**
+ * Sets the shader for this shape. 
+ *
+ * Note: This method MUST be called to initilize the object completely.
+ * 
+ * @param shader The shader program this shape should use
+ */ 
+Shape.prototype.setShader = function(shader) {
+    shader = shader;
+}
+
+/**
+ * Sets the camera for this shape. 
+ *
+ * Note: This method MUST be called to initilize the object completely.
+ * 
+ * @param camera The camera this shape should use
+ */ 
+Shape.prototype.setCamera = function(camera) {
+    camera = camera;
+}
+
+/**
+ * Sets the points array. Should be used by a subclass. 
+ */ 
+Shape.prototype.setPoints = function(points) {
+    points = points;
+}
+
+/**
+ * Sets the colors array. Should be used by a subclass. 
+ */
+Shape.prototype.setColors = function(colors) {
+    colors = colors;
+}
+    
 Shape.prototype.draw = function() {
     if(this.shader == null || this.camera == null || gl == null) {
         console.error("Shape not initilizaed properly.");
