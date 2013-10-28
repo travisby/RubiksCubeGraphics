@@ -6,7 +6,9 @@
     <script id="vertex-shader" type="x-shader/x-vertex">
         attribute   vec4 positionVertex;
         attribute   vec3 normalVertex;
-        varying     vec4 colorVertex;
+        attribute   vec4 vertexColor;    
+    
+        varying     vec4 lightColor;
 
         uniform     vec4 ambientProduct, diffuseProduct, specularProduct;
         uniform     mat4 transformation;
@@ -40,9 +42,9 @@
             } 
             
             gl_Position = projection * transformation * positionVertex;
-            colorVertex = ambient + diffuse + specular;
+            lightColor = ambient + diffuse + specular + vertexColor;
             
-            colorVertex.a = 1.0;
+            lightColor.a = 1.0;
         }
     </script>
     <script id="fragment-shader" type="x-shader/x-fragment">
@@ -50,12 +52,12 @@
         precision highp float;
         #endif
 
-        varying vec4 colorVertex;
+        varying vec4 lightColor;
 
         void
         main()
         {
-            gl_FragColor = colorVertex;
+            gl_FragColor = lightColor;
         }
     </script>
     <script type="text/javascript" src="js/init.js"></script>

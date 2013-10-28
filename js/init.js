@@ -2,22 +2,31 @@ var drawables = [];
 var gl;
 
 window.onload = function() {
+    var BLACK = [0.0, 0.0, 0.0, 1.0];
+    var WHITE = [1.0, 1.0, 1.0, 1.0];
+    var BLUE = [0.0, 0.0, 1.0, 1.0];
+    var RED = [1.0, 0.0, 0.0, 1.0];
+    var GREEN = [0.0, 1.0, 0.0, 1.0];
+    var ORANGE = [1.0, 0.498, 0.0, 1.0];
+    var YELLOW = [1.0, 1.0, 0.0, 1.0];
+    var colors = [BLACK, BLUE, RED, GREEN, ORANGE, YELLOW];
+
     gl = WebGLUtils.setupWebGL(document.getElementById("cubeCanvas"));
     gl.viewport( 0, 0, 512, 512 );
     gl.clearColor(1, 1, 1, 1.0 );
     var shaders = initShaders(gl, "vertex-shader", "fragment-shader");
     var camera = new Camera();
     camera.setOrtho(-5,5,-5,5,-5,5);
-    camera.move(2,.5,2);
+    camera.move(2,.5,-2);
     camera.aim(0,1,0);
     camera.direction(2,2,2);
     gl.enable(gl.DEPTH_TEST);
-    var light = new Light(new Material(vec4(1,1,1,1), vec4(1,1,0,1), vec4(1,1,0,1), 6));
-    light.setPosition(20000,200000,200000,1);
-    light.setSpecular(1,1,1,1);
-    light.setDiffuse(1,1,.8,1);
-    light.setAmbient(.5,.5,.1,.1);
-    var cube = new SolidCuboid(1.5, .5,2,colors, shaders, camera, light); 
+    var light = new Light();
+    light.setPosition(2000,20000,20000,1);
+    light.setSpecular(.5,1,.1,.5);
+    light.setDiffuse(.1,1,.8,.5);
+    light.setAmbient(.1,.1,.1,.5);
+    var cube = new SolidCuboid(shaders, camera, light, new Material(new vec4(1,.5,1,.1), vec4(1,.5,1,.1), vec4(1,.5,1,.1), 1000), colors, 3, 3, 2); 
     drawables.push(cube);
     cube.move(3,1);
     render(); 
