@@ -21,6 +21,10 @@ Face.prototype.draw = function() {
   // TODO
 }
 
+Face.prototype.setColorsByString = function(color1, color2, color3, color4, color5, color6) {
+  // TODO
+}
+
 // B, L, D, R, F, U
 function BackFace(cubies) {
   Face.apply(this, cubies);
