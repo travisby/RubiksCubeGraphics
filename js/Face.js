@@ -48,7 +48,7 @@ Face.prototype.setColorsByString = function(colors) {
 
   var cubies = this._getCubies();
   // change colors string to actual colors
-  colors = stringArrayToColorArray(colors);
+  colors = charsToColors(colors);
 
   for (var i = 0; i < cubies.length; i++) {
     cubies[i].setColor(colors[i], DIRECTION);

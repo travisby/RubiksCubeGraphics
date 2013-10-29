@@ -35,10 +35,10 @@ YELLOW = new Yellow();
 
 /**
  * Translates a character to a Color
- * @param char
+ * @param {string} char
  * @returns Color
  */
-function getColorFromCharacter(char) {
+function charToColor(char) {
   switch (char) {
     case 'W':
       return WHITE;
@@ -59,15 +59,15 @@ function getColorFromCharacter(char) {
 
 /**
  * Converts an array of characters like ['O', 'B', 'W'] into colors like [new Orange(), new Blue(), new White()]
- * @param {String[]} colors
+ * @param {string[]} colors
  * @returns {Color[]}
  */
-function stringArrayToColorArray(colors) {
+function charsToColors(colors) {
 
   var newColors = [];
 
   for (var i = 0; i <= colors.length; i++) {
-    newColors[i] = getColorFromCharacter(colors[i]);
+    newColors[i] = charToColor(colors[i]);
   }
   return newColors;
 }
