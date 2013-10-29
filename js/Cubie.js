@@ -1,8 +1,12 @@
 function Cubie() {
+  
+  var colors = new CubeColors();
+  colors.set(CUBE_FRONT, [1.0, 0, 0, 1]);
+  colors.set(CUBE_RIGHT, [0, 1.0, 0, 1]);
+  FancySolidCube.apply(this, [this.material, colors]);
   var x = 0;
   var y = 0;
   var z = 0;
-  var colors = new CubeColors();
   var fancySolidCube = new FancySolidCube(this.material, colors);
 
   /**
@@ -55,6 +59,9 @@ function Cubie() {
       fancySolidCube = newFancySolidCube;
   }
 }
+
+Cubie.prototype = Object.create(FancySolidCube.prototype);
+Cubie.prototype.constructor = Cubie;
 
 Cubie.prototype.material = new Material(new vec4(.1,.1,.1,.1), vec4(1,1,1,1), vec4(1,1,1,1), 10);
 

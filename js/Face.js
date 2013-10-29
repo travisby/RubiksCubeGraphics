@@ -17,7 +17,7 @@ function Face(cubies) {
    * @type {Cubie[]}
    */
   var myCubies = cubies;
-
+  this.setDrawables(myCubies);
   this._getCubies = function() {
     return myCubies;
   }
@@ -28,9 +28,8 @@ Face.prototype.turn = function() {
   // TODO
 }
 
-Face.prototype.draw = function() {
-  // TODO
-}
+Face.prototype = new Model();
+Face.prototype.constructor = Face;
 
 /**
  * Get the color of our Face, which is defined by the center cubie
@@ -54,6 +53,7 @@ Face.prototype.setColorsByString = function(colors) {
     cubies[i].setColor(colors[i], DIRECTION);
   }
 }
+
 
 // B, L, D, R, F, U
 function BackFace(cubies) {

@@ -12,7 +12,10 @@ function RubiksCube() {
   // Create our cubies
   for (var i = 0; i <= 27; i++) {
     cubies[i] = new Cubie();
+    cubies[i].move(i * 1.1, 1);
   }
+
+  console.log(cubies);
 
   // used by Model for drawing
   this.setDrawables(cubies);
@@ -21,8 +24,8 @@ function RubiksCube() {
     return cubies;
   }
 }
-RubiksCube.prototype = new Model();
-
+RubiksCube.prototype = Object.create(Model.prototype);
+RubiksCube.prototype.constructor = RubiksCube;
 
 /**
  * Facial representation of our cube in order... B, L, D, R, F, U
@@ -41,13 +44,6 @@ RubiksCube.prototype.getFaces = function() {
   ];
 }
 
-RubiksCube.prototype.draw = function() {
-  var faces = this.getFaces();
-
-  for (var i = 0; i < faces.length; i++) {
-    faces[i].draw();
-  }
-}
 
 /**
  * Rotate face 90 degrees counter-clockwise
@@ -79,7 +75,7 @@ RubiksCube.prototype.getFaceByColor = function(color) {
  * Turns the rubiks cube based on a string... "O3W1" meaning "Turn orange three times, White one time"
  * @param {string} str
  */
-function RubiksCube.prototype.turnByString(str) {
+RubiksCube.prototype.turnByString = function(str) {
     /**
      *
      * @type {Face[]}
@@ -121,7 +117,7 @@ function RubiksCubeFactoryFromString(text) {
 
     var cube = new RubiksCube();
     var faces = cube.getFaces();
-
+    console.log(faces);
   // remove ALL whitespace
   // http://stackoverflow.com/questions/6163169/replace-multiple-whitespaces-with-single-whitespace-in-javascript-string
   text.replace(/\s+/g, '');
