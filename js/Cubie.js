@@ -2,6 +2,8 @@ function Cubie() {
   var x = 0;
   var y = 0;
   var z = 0;
+  var colors = new CubeColors();
+  var fancySolidCube = new FancySolidCube(this.material, colors);
 
   /**
    * Contains individual tiles of a cube
@@ -40,15 +42,21 @@ function Cubie() {
     z = zPos;
   };
 
-  this._setTiles = function(newTiles) {
-    tiles = newTiles
+    /**
+     *
+     * @returns {CubeColors}
+     * @private
+     */
+  this._getColors = function() {
+      return colors;
   }
 
-  this._getTiles = function() {
-    return tiles;
+  this._setFancySolidCube = function(newFancySolidCube) {
+      fancySolidCube = newFancySolidCube;
   }
-
 }
+
+Cubie.prototype.material = new Material(new vec4(.1,.1,.1,.1), vec4(1,1,1,1), vec4(1,1,1,1), 10);
 
 /**
  * Changes our coordinates
@@ -62,31 +70,10 @@ Cubie.prototype.setCoords = function(vec3) {
 
 /**
  * Vector of our coords
- * @returns {Vec3}
+ * @returns {vec3}
  */
 Cubie.prototype.getCoords = function() {
-  return new Vec3([this._getX(), this._getY(), this._getZ()]);
-}
-
-/**
- *
- * @param tiles
- * @returns {Tile[]}
- */
-Cubie.prototype.setTiles = function(tiles) {
-  return this._setTiles(tiles);
-}
-
-Cubie.prototype.draw = function() {
-
-  /**
-   *
-   * @type {Tile[]}
-   */
-  var tiles = this._getTiles();
-  for (var i = 0; i < tiles.length; i++) {
-    tiles[i].draw();
-  }
+  return new vec3([this._getX(), this._getY(), this._getZ()]);
 }
 
 /**
@@ -95,5 +82,8 @@ Cubie.prototype.draw = function() {
  * @param {Direction} direction
  */
 Cubie.prototype.setColor = function(color, direction) {
-  // TODO
+    this._getColors().set(direction, color);
+    this._setFancySolidCube(new FancySolidCube(this.material, this._getColors()));
+
+
 }
