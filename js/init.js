@@ -15,10 +15,10 @@ window.onload = function() {
     camera.direction(0,5,1);
     
     var light = new Light();
-    light.setPosition(10,10,10,1);
+    light.setPosition(10,10,10,0.0);
     light.setSpecular(1,1,1,1);
-    light.setDiffuse(.2,.2,.2,1);
-    light.setAmbient(.2,.2,.2,.1);
+    light.setDiffuse(.3,.3,.3,.1);
+    light.setAmbient(1,1,1,1);
     
     var c = new CubeColors();
     c.set(CUBE_FRONT, RED);    
@@ -30,7 +30,7 @@ window.onload = function() {
 
     for(var i = 0; i < 3; i++) {
         
-        var cube = new FancySolidCube(new Material(new vec4(1,1,1,.1), vec4(1,1,1,.1), vec4(1,1,1,.1), 1000), c); 
+        var cube = new FancySolidCube(new Material(new vec4(.1,.1,.1,.1), vec4(1,1,1,1), vec4(1,1,1,1), 10), c); 
         cube.move(i * 1.1, X_AXIS);
         scene.add(cube);
     }

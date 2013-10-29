@@ -1,6 +1,5 @@
 function FancySolidCube(material, colors) {
     Shape.apply(this, [material, colors]);
-    console.log(this.colorVectors); 
     this.vertices = [
         
         //Cube corners
@@ -52,7 +51,6 @@ function FancySolidCube(material, colors) {
         ];
 
     this.makeCube = function() {
-        console.log(this.colors);
         this.makeSide(0,4,2,6,24,26,25,27,this.colors[0]); //Front
         this.makeSide(1,0,3,2,11,10,9,8,this.colors[1]); //LEFT
         this.makeSide(1,5,0,4,17,19,16,18,this.colors[2]); //TOP
@@ -63,13 +61,15 @@ function FancySolidCube(material, colors) {
 
     this.makeSide = function(cubeTL, cubeTR, cubeBL, cubeBR, outTL, outTR, outBL, outBR, color) {
             
-        var t1 = subtract(this.vertices[cubeTR], this.vertices[cubeTL]);
-        var t2 = subtract(this.vertices[cubeBR], this.vertices[cubeTR]);
-        var normal = cross(t1, t2);
-        normal = vec3(normal);
-        //normal = normalize(normal);
         
         if(color[0] == 0 && color[1] == 0 && color[2] == 0) {
+       
+            var t1 = subtract(this.vertices[cubeTR], this.vertices[cubeTL]);
+            var t2 = subtract(this.vertices[cubeBR], this.vertices[cubeTR]);
+            var normal = cross(t1, t2);
+            normal = vec3(normal);
+            normal = normalize(normal);
+       
             this.points.push(vec4(this.vertices[cubeTL]));
             this.colorVectors.push(vec4(color));
             this.normalVectors.push(normal);
@@ -95,7 +95,13 @@ function FancySolidCube(material, colors) {
             this.normalVectors.push(normal);
 
         } else {
-            console.log("test");
+                
+            var t1 = subtract(this.vertices[outBL], this.vertices[cubeBL]);
+            var t2 = subtract(this.vertices[outBR], this.vertices[cubeBR]);
+            var normal = cross(t1, t2);
+            normal = vec3(normal);
+            normal = normalize(normal);
+    
             this.points.push(vec4(this.vertices[cubeBL]));
             this.colorVectors.push(vec4(color));
             this.normalVectors.push(normal);
@@ -124,6 +130,13 @@ function FancySolidCube(material, colors) {
 
             //------------------
 
+
+            t1 = subtract(this.vertices[outTL], this.vertices[cubeTL]);
+            t2 = subtract(this.vertices[outBL], this.vertices[cubeBL]);
+            normal = cross(t1, t2);
+            normal = vec3(normal);
+            normal = normalize(normal);
+
             this.points.push(vec4(this.vertices[cubeBL]));
             this.colorVectors.push(vec4(color));
             this.normalVectors.push(normal);
@@ -150,6 +163,13 @@ function FancySolidCube(material, colors) {
             this.colorVectors.push(vec4(color));
             this.normalVectors.push(normal);
             
+            
+            t1 = subtract(this.vertices[outTL], this.vertices[cubeTL]);
+            t2 = subtract(this.vertices[outTR], this.vertices[cubeTR]);
+            normal = cross(t1, t2);
+            normal = vec3(normal);
+            normal = normalize(normal);
+
             //-----------------
             
             this.points.push(vec4(this.vertices[cubeTL]));
@@ -179,6 +199,12 @@ function FancySolidCube(material, colors) {
             this.normalVectors.push(normal);
             
             //-----------------
+
+            t1 = subtract(this.vertices[outTR], this.vertices[cubeTR]);
+            t2 = subtract(this.vertices[outBR], this.vertices[cubeBR]);
+            normal = cross(t1, t2);
+            normal = vec3(normal);
+            normal = normalize(normal);
 
             this.points.push(vec4(this.vertices[cubeTR]));
             this.colorVectors.push(vec4(color));
@@ -207,6 +233,12 @@ function FancySolidCube(material, colors) {
             this.normalVectors.push(normal);
             
             //-----------------
+            
+            t1 = subtract(this.vertices[outTR], this.vertices[outTL]);
+            t2 = subtract(this.vertices[outBR], this.vertices[outTR]);
+            normal = cross(t1, t2);
+            normal = vec3(normal);
+            normal = normalize(normal);
             
             this.points.push(vec4(this.vertices[outTL]));
             this.colorVectors.push(vec4(color));
