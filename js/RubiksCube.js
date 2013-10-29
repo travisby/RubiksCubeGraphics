@@ -81,20 +81,11 @@ RubiksCube.prototype.getFaceByColor = function(color) {
  * @constructor
  */
 function RubiksCubeFactoryFromFile(file) {
-  // https://www.inkling.com/read/javascript-definitive-guide-david-flanagan-6th/chapter-22/reading-text-files-with
 
-  var reader = new FileReader();  // Create a FileReader object
-  var text = '';
-  var cube = new RubiksCube();
-  var faces = this.getFaces();
-  reader.readAsText(file);           // Read the file
-  reader.onload = function() {    // Define an event handler
-    text = reader.result;   // This is the file contents
-  }
+    var text = fileToString(file);
+    var cube = new RubiksCube();
+    var faces = cube.getFaces();
 
-  while (!text) {
-    // loop while we wait for file reading to end
-  }
   // remove ALL whitespace
   // http://stackoverflow.com/questions/6163169/replace-multiple-whitespaces-with-single-whitespace-in-javascript-string
   text.replace(/\s+/g, '');
