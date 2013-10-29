@@ -2,7 +2,7 @@ var Model = function() {
     this.drawables = [];
 }
 
-Model.prototype.setDrawables(drawables) {
+Model.prototype.setDrawables = function(drawables) {
     this.drawables = drawables;
 }
 

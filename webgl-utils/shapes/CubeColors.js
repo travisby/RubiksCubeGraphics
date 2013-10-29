@@ -20,7 +20,7 @@ CubeColors.prototype.set = function(face, color) {
 
 CubeColors.prototype.reset = function() {
     this.colors = [];
-    for(var i in this.colors) {
+    for(var i = 0; i < 6; i++) {
         this.colors.push([0.0, 0.0, 0.0, 1.0]);
     }
 }

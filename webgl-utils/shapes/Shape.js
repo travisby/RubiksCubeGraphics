@@ -31,13 +31,19 @@ var Shape = function(material, colors) {
         //The array of normal vectors used for lighting
         this.normalVectors = [];
 
-        this.colorVectors = []; 
+        this.colorVectors = [];
+
+        this.first = true; 
 }
 
 /**
  * TODO: Write comment
  */
 Shape.prototype.draw = function(gl, shader, light, camera) {
+    if(this.first) {
+        this.setupWebGL(gl);
+        first = false;
+    }
     gl.useProgram(shader);
     
     gl.uniformMatrix4fv(gl.getUniformLocation(shader, "projection"), false, flatten(camera.getProjection()));

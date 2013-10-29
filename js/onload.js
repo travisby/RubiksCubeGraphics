@@ -1,4 +1,4 @@
-window.onload = function() {
+/*window.onload = function() {
     var camera = new Camera();
     camera.setOrtho(-5,5,-5,5,-5,5);
     camera.move(2,2,2);
@@ -13,9 +13,9 @@ window.onload = function() {
 
     var scene = new Scene("cubeCanvas", light, camera);
     
-    //var rubiksCube = whatever
+    var rubiksCube = new RubiksCube(); 
 
     scene.add(rubiksCube);
 
     scene.render();
-}
+}*/

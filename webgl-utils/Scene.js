@@ -16,7 +16,6 @@ var Scene = function(canvasID, light, camera) {
 }
 
 Scene.prototype.add = function(drawable) {
-    drawable.setupWebGL(this.gl);
     this.drawables.push(drawable);
 }
 
