@@ -77,13 +77,13 @@ Shape.prototype.draw = function(gl, shader, light, camera) {
  */ 
 Shape.prototype.move = function(distance, axis) {
     var delta = [0,0,0];
-
+    
     if (axis === undefined) { 
         axis = Y_AXIS;
     }
     
     delta[axis] = distance;
-    this.transform = mult(translate(delta), this.transformation);    
+    this.transformation = mult(translate(delta), this.transformation);    
 }
     
 /**
@@ -101,7 +101,7 @@ Shape.prototype.rotate = function(angle, axis) {
     }
 
     avec[axis] = 1;
-    this.transform = mult(this.transform, rotate(angle, avec));
+    this.transformation = mult(this.transform, rotate(angle, avec));
 }
     
 /**
@@ -119,7 +119,7 @@ Shape.prototype.orbit = function(angle, axis) {
     }
     
     avec[axis] = 1;
-    this.transform = mult(rotate(angle, avec), this.transform);        
+    this.transformation = mult(rotate(angle, avec), this.transform);        
 }
 /*
  * TODO: Write comment
