@@ -14,11 +14,15 @@ function RubiksCube() {
     cubies[i] = new Cubie();
   }
 
+  // used by Model for drawing
+  this.shapes = cubies;
+
   this._getCubies = function() {
     return cubies;
   }
-
 }
+RubiksCube.prototype = new Model();
+
 
 /**
  * Facial representation of our cube in order... B, L, D, R, F, U
