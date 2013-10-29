@@ -29,12 +29,12 @@ function SolidCuboid(material, colors, width, height, depth) {
     }
 
     this.makeCuboid = function() {
-       this.makeSide(0,1,2,3, colors[0]);
-       this.makeSide(4,0,3,7, colors[1]);
-       this.makeSide(4,5,1,0, colors[2]);
-       this.makeSide(1,5,6,2, colors[3]);
+       this.makeSide(0,1,2,3, this.colors[0]);
+       this.makeSide(4,0,3,7, this.colors[1]);
+       this.makeSide(4,5,1,0, this.colors[2]);
+       this.makeSide(1,5,6,2, this.colors[3]);
        this.makeSide(5,4,7,6, this.colors[4]);
-       this.makeSide(7,6,2,3, colors[5]);           
+       this.makeSide(7,6,2,3, this.colors[5]);           
     }
 
     this.makeSide = function( topLeft, topRight, bottomRight, bottomLeft, color )

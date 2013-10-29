@@ -23,8 +23,8 @@ window.onload = function() {
     light.setDiffuse(.1,1,.8,.5);
     light.setAmbient(.1,.1,.1,.5);
     
-    var cube = new SolidCuboid(new Material(new vec4(1,1,1,.1), vec4(1,1,1,.1), vec4(1,1,1,.1), .1), colors, 3, 3, 3); 
-    var cube1 = new SolidCuboid(new Material(new vec4(1,1,1,.1), vec4(1,1,1,.1), vec4(1,1,1,.1), .1), colors, 4, 1, 4);
+    var cube = new SolidCube(new Material(new vec4(1,1,1,.1), vec4(1,1,1,.1), vec4(1,1,1,.1), .1), colors); 
+    var cube1 = new SolidCube(new Material(new vec4(1,1,1,.1), vec4(1,1,1,.1), vec4(1,1,1,.1), .1), colors);
     
     var scene = new Scene("cubeCanvas", light, camera);
     scene.add(cube);

@@ -17,7 +17,6 @@ const Z_AXIS = 2;
 var Shape = function(material, colors) {
 
 //Constructor parameter class variables
-
         this.material = material;
         this.colors = colors;
 
