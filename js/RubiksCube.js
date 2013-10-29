@@ -15,7 +15,7 @@ function RubiksCube() {
   }
 
   // used by Model for drawing
-  this.shapes = cubies;
+  this.setDrawables(cubies);
 
   this._getCubies = function() {
     return cubies;
