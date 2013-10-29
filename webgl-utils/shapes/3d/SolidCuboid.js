@@ -4,10 +4,10 @@
  * A simple WebGl Cuboid (3D rectangle).
  */
 
-function SolidCuboid(shader, camera, light, material, colors, width, height, depth) {
+function SolidCuboid(material, colors, width, height, depth) {
     //Calls Shape's constructor as far as I can tell.
     //It works so leave it
-    Shape.apply(this, [shader, camera, light, material, colors]);
+    Shape.apply(this, [material, colors]);
     var width  = width;
     var height = height;  
     var depth  = depth;
@@ -43,7 +43,7 @@ function SolidCuboid(shader, camera, light, material, colors, width, height, dep
         var t2 = subtract(this.vertices[bottomRight], this.vertices[topRight]);
         var normal = cross(t1, t2);
         normal = vec3(normal);
-        normal = normalize(normal);
+        //normal = normalize(normal);
         
         this.points.push(vec4(this.vertices[topLeft]));
         this.colorVectors.push(vec4(color));
@@ -71,9 +71,7 @@ function SolidCuboid(shader, camera, light, material, colors, width, height, dep
     }
      
     this.setVertices();
-    console.log(this.vertices);
     this.makeCuboid();
-    this.setupWebGL();
 }
 
 SolidCuboid.prototype = new Shape();

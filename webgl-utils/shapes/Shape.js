@@ -12,18 +12,12 @@ const Z_AXIS = 2;
 /**
  * Constructor for the Shape object
  *
- * @param shader The shader program the shape will use
- * @param camera The camera that the shape will be viewed with
- * @param light The light that effects this shape
  * @param material TODO: Write
  */
-var Shape = function(shader, camera, light, material, colors) {
+var Shape = function(material, colors) {
 
 //Constructor parameter class variables
 
-        this.shader = shader;
-        this.camera = camera;
-        this.light = light;
         this.material = material;
         this.colors = colors;
 
@@ -44,30 +38,30 @@ var Shape = function(shader, camera, light, material, colors) {
 /**
  * TODO: Write comment
  */
-Shape.prototype.draw = function() {
-    gl.useProgram(this.shader);
+Shape.prototype.draw = function(gl, shader, light, camera) {
+    gl.useProgram(shader);
     
-    gl.uniformMatrix4fv(gl.getUniformLocation(this.shader, "projection"), false, flatten(this.camera.getProjection()));
-    gl.uniformMatrix4fv(gl.getUniformLocation(this.shader, "transformation"), false, flatten(this.transformation));
+    gl.uniformMatrix4fv(gl.getUniformLocation(shader, "projection"), false, flatten(camera.getProjection()));
+    gl.uniformMatrix4fv(gl.getUniformLocation(shader, "transformation"), false, flatten(this.transformation));
     
-    gl.uniform4fv(gl.getUniformLocation(this.shader, "ambientProduct"), flatten(this.light.ambientProduct(this.material)));
-    gl.uniform4fv(gl.getUniformLocation(this.shader, "diffuseProduct"), flatten(this.light.diffuseProduct(this.material)));
-    gl.uniform4fv(gl.getUniformLocation(this.shader, "specularProduct"), flatten(this.light.specularProduct(this.material)));  
-    gl.uniform4fv(gl.getUniformLocation(this.shader, "lightPosition"), flatten(this.light.position));
-    gl.uniform1f(gl.getUniformLocation(this.shader, "shininess"), this.material.shininess);
+    gl.uniform4fv(gl.getUniformLocation(shader, "ambientProduct"), flatten(light.ambientProduct(this.material)));
+    gl.uniform4fv(gl.getUniformLocation(shader, "diffuseProduct"), flatten(light.diffuseProduct(this.material)));
+    gl.uniform4fv(gl.getUniformLocation(shader, "specularProduct"), flatten(light.specularProduct(this.material)));  
+    gl.uniform4fv(gl.getUniformLocation(shader, "lightPosition"), flatten(light.position));
+    gl.uniform1f(gl.getUniformLocation(shader, "shininess"), this.material.shininess);
     
     gl.bindBuffer( gl.ARRAY_BUFFER, this.pointBuffer );
-    var positionVertex = gl.getAttribLocation( this.shader, "positionVertex" );
+    var positionVertex = gl.getAttribLocation( shader, "positionVertex" );
     gl.vertexAttribPointer( positionVertex, 4, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( positionVertex );
     
     gl.bindBuffer( gl.ARRAY_BUFFER, this.colorBuffer );
-    var vertexColor = gl.getAttribLocation( this.shader, "vertexColor" );
+    var vertexColor = gl.getAttribLocation( shader, "vertexColor" );
     gl.vertexAttribPointer( vertexColor, 4, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( vertexColor );
     
     //gl.bindBuffer( gl.ARRAY_BUFFER, this.normalBuffer );
-    var normalVertex = gl.getAttribLocation( this.shader, "normalVertex" );
+    var normalVertex = gl.getAttribLocation( shader, "normalVertex" );
     gl.vertexAttribPointer( normalVertex, 4, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( normalVertex );
     
@@ -131,7 +125,7 @@ Shape.prototype.orbit = function(angle, axis) {
 /*
  * TODO: Write comment
  */
-Shape.prototype.setupWebGL = function() {
+Shape.prototype.setupWebGL = function(gl) {
         
     //Creates a buffer for the normal vector data
     var normalBuffer = gl.createBuffer();
