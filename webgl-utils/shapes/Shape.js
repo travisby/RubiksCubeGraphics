@@ -18,7 +18,7 @@ var Shape = function(material, colors) {
 
 //Constructor parameter class variables
         this.material = material;
-        this.colors = colors;
+        this.colors = colors.getColors();
 
 //Other class variables
 
