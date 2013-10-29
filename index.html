@@ -60,7 +60,6 @@
             gl_FragColor = lightColor;
         }
     </script>
-    <script type="text/javascript" src="js/onload.js"></script>
     <script type="text/javascript" src="webgl-utils/shapes/Shape.js"></script>
     <script type="text/javascript" src="webgl-utils/Light.js"></script>
     <script type="text/javascript" src="webgl-utils/Material.js"></script>
@@ -80,10 +79,28 @@
     <script type="text/javascript" src="js/utils.js"></script>
     <script type="text/javascript" src="webgl-utils/shapes/CubeColors.js"></script>
     <script type="text/javascript" src="webgl-utils/Scene.js"></script>
+    <script type="text/javascript" src="js/init.js"></script>
+    <script type="text/javascript" src="js/onload.js"></script>
 </head>
-<body style="background-color:black;text-align:center">
+<body style="background-color:grey;text-align:center">
 
-    <canvas id="cubeCanvas" width="512" height="512" style="background: blue">Sorry, your browser does not support WebGL.</canvas>
+    <canvas id="canvasA" width="512" height="512" style="background: blue">Sorry, your browser does not support WebGL.</canvas>
 
+    <canvas id="canvasB" width="512" height="512" style="background: blue">Sorry, your browser does not support WebGL.</canvas>
+
+<div>
+    <button id="spinR">Turn Red</button>
+    <button id="spinB">Turn Blue</button>
+    <button id="spinW">Turn White</button>
+    <button id="spinO">Turn Orange</button>
+    <button id="spinY">Turn Yellow</button>
+    <button id="spinG">Turn Green</button>
+    </br></br>
+    <button id="zoomIn">Zoom In</button>
+    <button id="zoomOut">Zoom Out</button>
+    </br></br>
+    <button id="state">State</button>
+    <button id="solve">Solve</button>
+</div>
 </body>
 </html>
