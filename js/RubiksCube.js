@@ -74,15 +74,51 @@ RubiksCube.prototype.getFaceByColor = function(color) {
   return null;
 }
 
+
+/**
+ * Turns the rubiks cube based on a string... "O3W1" meaning "Turn orange three times, White one time"
+ * @param {string} str
+ */
+function RubiksCube.prototype.turnByString(str) {
+    /**
+     *
+     * @type {Face[]}
+     */
+    var faceColorsInOrder = [];
+
+    /**
+     *
+     * @type {int[]}
+     */
+    var numTurnsInOrder = [];
+    var index = 0;
+
+    // fill faceColorsInOrder and numTurnsInOrder
+    for (var i = 0; i < str.length; i += 2) {
+        faceColorsInOrder[index] = charToColor(str[i]);
+        numTurnsInOrder[index] = parseInt(str[i + 1]);
+        index++;
+    }
+
+    // for every face...
+    for (var i = 0; i < faceColorsInOrder.length; i++) {
+        var face = this.getFaceByColor(faceColorsInOrder[i]);
+        // perform the amount of turns given
+        while (numTurnsInOrder[i] > 0) {
+            face.turn();
+            numTurnsInOrder[i]--;
+        }
+    }
+}
+
 /**
  * Builds a RubiksCube by using a file handle to get the colors
- * @param file handle to build from
+ * @param {string} text
  * @returns {RubiksCube}
  * @constructor
  */
-function RubiksCubeFactoryFromFile(file) {
+function RubiksCubeFactoryFromString(text) {
 
-    var text = fileToString(file);
     var cube = new RubiksCube();
     var faces = cube.getFaces();
 
