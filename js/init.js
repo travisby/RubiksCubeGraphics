@@ -24,6 +24,7 @@ window.onload = function() {
     c.set(CUBE_FRONT, RED);    
     c.set(CUBE_RIGHT, BLUE);
     c.set(CUBE_TOP, YELLOW);  
+  //c.reset(); - that will reset all the faces to black
     var cube = new SolidCube(new Material(new vec4(1,1,1,.1), vec4(1,1,1,.1), vec4(1,1,1,.1), 1000), c); 
     //var cube1 = new SolidCube(new Material(new vec4(1,1,1,.1), vec4(1,1,1,.1), vec4(1,1,1,.1), 1000), colors);
     
