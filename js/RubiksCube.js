@@ -12,7 +12,6 @@ function RubiksCube() {
   // Create our cubies
   for (var i = 0; i <= 27; i++) {
     cubies[i] = new Cubie();
-    cubies[i].move(i * 1.1, 1);
   }
 
   console.log(cubies);
