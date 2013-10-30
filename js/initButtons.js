@@ -1,3 +1,5 @@
+var random;
+
 var init = function() {
     
     var spinR = document.getElementById("spinR");
@@ -93,4 +95,17 @@ var init = function() {
         }),
         false
     );
+    var rnd = document.getElementById("rnd");
+    rnd.addEventListener("click",
+        function() {
+            if(random == undefined) {
+                random = setInterval("rubiksCube.randomize(1)", 1500);
+                rnd.innerHTML="Stop Spinning";
+            }
+            else {
+                clearInterval(random);
+                rnd.innerHTML="Randomly Spin";
+                random = undefined;
+            }
+        });   
 }
