@@ -5,6 +5,13 @@ const CUBE_RIGHT    = 3;
 const CUBE_BACK     = 4;
 const CUBE_BOTTOM   = 5;
 
+const F    = 0;
+const L     = 1;
+const T      = 2;
+const R    = 3;
+const BA     = 4;
+const BO   = 5;
+
 function CubeColors() {
 }
 
@@ -35,4 +42,8 @@ CubeColors.prototype.reset = function() {
     for(var i = 0; i < this.FACE_CONSTANTS; i++) {
         this.colors.push(NOCOLOR);
     }
+}
+
+function NC() {
+    return new CubeColors();
 }
