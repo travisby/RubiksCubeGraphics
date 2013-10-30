@@ -5,7 +5,6 @@
  */
 function Face(cubies) {
   Model.apply(this, []);
-  console.log(this);
   // should be set in each subclass
   /**
    *
@@ -18,8 +17,9 @@ function Face(cubies) {
    * @type {Cubie[]}
    */
   var myCubies = cubies;
-  this.setDrawables(myCubies);
-  this._getCubies = function() {
+  this.add(cubies);
+  this.move(1,1);
+    this._getCubies = function() {
     return myCubies;
   }
 
@@ -67,29 +67,29 @@ BackFace.prototype.constructor = Face;
 function LeftFace(cubies) {
   Face.apply(this, cubies);
 }
-LeftFace.prototype = new Face();
+LeftFace.prototype = Object.create(Face.prototype);
 LeftFace.prototype.constructor = Face;
 
 function RightFace(cubies) {
   Face.apply(this, cubies);
 }
-RightFace.prototype = new Face();
+RightFace.prototype = Object.create(Face.prototype);
 RightFace.prototype.constructor = Face;
 
 function FrontFace(cubies) {
   Face.apply(this, cubies);
 }
-FrontFace.prototype = new Face();
+FrontFace.prototype = Object.create(Face.prototype);
 FrontFace.prototype.constructor = Face;
 
 function DownFace(cubies) {
   Face.apply(this, cubies);
 }
-DownFace.prototype = new Face();
+DownFace.prototype = Object.create(Face.prototype);
 DownFace.prototype.constructor = Face;
 
 function UpFace(cubies) {
   Face.apply(this, cubies);
 }
-UpFace.prototype = new Face();
+UpFace.prototype = Object.create(Face.prototype);
 UpFace.prototype.constructor = Face;

@@ -10,6 +10,12 @@ Model.prototype.add = function(drawable) {
     this.drawables.push(drawable);
 }
 
+Model.prototype.smoothOrbit = function(angle, axis) {
+    for(var i in this.drawables) {
+        this.drawables[i].smoothOrbit(angle, axis);
+    }
+}
+
 Model.prototype.draw = function(gl, shader, light, camera) {
     for(var i in this.drawables) {
         this.drawables[i].draw(gl, shader, light, camera);
