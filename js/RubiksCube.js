@@ -66,6 +66,7 @@ RubiksCube.prototype.turnByString = function(str) {
       numTurnsInOrder[i]--;
 
       for (var j = 0; j < 10000; j++) {
+        j;
         // because I said sleep, that's why
       }
     }
