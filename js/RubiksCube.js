@@ -37,7 +37,7 @@ RubiksCube.prototype.constructor = RubiksCube;
  * @param {string} str
  */
 RubiksCube.prototype.turnByString = function(str) {
-  window.movesQueue = [];
+  var movesQueue = [];
   /**
    *
    * @type {Face[]}
@@ -62,21 +62,28 @@ RubiksCube.prototype.turnByString = function(str) {
   for (var i = 0; i < faceColorsInOrder.length; i++) {
 
     while (numTurnsInOrder[i] > 0) {
-      this.turnFace(faceColorsInOrder[i]);
+      movesQueue.push(faceColorsInOrder[i]);
       numTurnsInOrder[i]--;
-
-      for (var j = 0; j < 10000; j++) {
-        j;
-        // because I said sleep, that's why
-      }
     }
+  }
+
+  // FINISH HIM... TAKE THAT ASYNCHRONOUS JAVASCRIPT CALLS
+  var finisher = function() {
+    rubiksCube.turnFace(movesQueue.pop());
+    if(movesQueue.length > 0) {
+      setTimeout(finisher, 1000);
+    }
+  };
+
+  if (movesQueue.length > 0) {
+    finisher();
   }
 }
 
 
 RubiksCube.prototype.turnFace = function (face) {
-    window.isRotating = true;
-    if(face == 'b') {
+  console.log(face);
+  if(face == 'b') {
         this.rotateColumn(2,1);
     }    
     else if(face == 'g') {
