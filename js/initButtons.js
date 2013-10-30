@@ -52,14 +52,35 @@ var init = function() {
         });       
     
     var state = document.getElementById("state");
-    state.addEventListener("click",
-        function() {
-            //TODO
-        });
+    state.addEventListener(
+        'change',
+        (function (event) {
+          var file = event.target.files[0];
+          fileToString(
+              file,
+              function(e) {
+                var textFromFile = e.target.result;
+                // GLOBAL
+                rubiksCube = RubiksCubeFactoryFromString(textFromFile);
+              }
+          )
+        }),
+        false
+    );
     
     var solve = document.getElementById("solve");
-    solve.addEventListener("click",
-        function() {
-            //TODO
-        });
+    solve.addEventListener(
+        'change',
+        (function (event) {
+          var file = event.target.files[0];
+          fileToString(
+              file,
+              function(e) {
+                var textFromFile = e.target.result;
+                rubiksCube.turnByString(textFromFile);
+              }
+          )
+        }),
+        false
+    );
 }
