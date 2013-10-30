@@ -14,7 +14,7 @@ const Z_AXIS = 2;
  *
  * @param material TODO: Write
  */
-var Shape = function(material, colors) {
+var Shape = function(material, colors, transformation) {
 
 //Constructor parameter class variables
         this.material = material;
@@ -23,8 +23,12 @@ var Shape = function(material, colors) {
 //Other class variables
 
         //The transformation matrix
-        this.transformation = mat4();
-
+        if(transformation == undefined) {
+            this.transformation = mat4();
+        } else {
+            this.transformation = transformation;
+        }
+        
         //The array of point vectors that are passed down to the shader   
         this.points = [];
 
