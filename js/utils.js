@@ -15,17 +15,17 @@ function fileToString(file, callback) {
 function directionToAxis(direction) {
     switch (direction) {
         case CUBE_TOP:
-            return Y_AXIS;
+            return Z_AXIS;
         case CUBE_BOTTOM:
-            return Y_AXIS;
+            return Z_AXIS;
         case CUBE_LEFT:
             return X_AXIS;
         case CUBE_RIGHT:
             return X_AXIS;
         case CUBE_FRONT:
-            return Z_AXIS;
+            return Y_AXIS;
         case CUBE_BACK:
-            return Z_AXIS;
+            return Y_AXIS;
     }
 
 

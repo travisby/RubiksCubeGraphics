@@ -25,7 +25,33 @@ window.onload = function() {
     var sceneA = new Scene("canvasA", light, cameraA);
     var sceneB = new Scene("canvasB", light, cameraB); 
     rubiksCube = RubiksCubeFactoryFromString("GGWRRGRRGOWWGGOYYROGOYYYRBRYYYRBGRWWBOYBOBBOBOGOWWBWWB");
-
+    var cubies = rubiksCube._getCubies();
+    cubies[0].move(-1, X_AXIS); cubies[0].move(1, Y_AXIS); cubies[0].move(-1, Z_AXIS);
+    cubies[1].move(0, X_AXIS); cubies[1].move(1, Y_AXIS); cubies[1].move(-1, Z_AXIS);
+    cubies[2].move(1, X_AXIS); cubies[2].move(1, Y_AXIS); cubies[2].move(-1, Z_AXIS);
+    cubies[3].move(-1, X_AXIS); cubies[3].move(0, Y_AXIS); cubies[3].move(-1, Z_AXIS);
+    cubies[4].move(0, X_AXIS); cubies[4].move(0, Y_AXIS); cubies[4].move(-1, Z_AXIS);
+    cubies[5].move(1, X_AXIS); cubies[5].move(0, Y_AXIS); cubies[5].move(-1, Z_AXIS);
+    cubies[6].move(-1, X_AXIS); cubies[6].move(-1, Y_AXIS); cubies[6].move(-1, Z_AXIS);
+    cubies[7].move(0, X_AXIS); cubies[7].move(-1, Y_AXIS); cubies[7].move(-1, Z_AXIS);
+    cubies[8].move(1, X_AXIS); cubies[8].move(-1, Y_AXIS); cubies[8].move(-1, Z_AXIS);
+    cubies[9].move(-1, X_AXIS); cubies[9].move(1, Y_AXIS); cubies[9].move(0, Z_AXIS);
+    cubies[10].move(-1, X_AXIS); cubies[10].move(0, Y_AXIS); cubies[10].move(0, Z_AXIS);
+    cubies[11].move(-1, X_AXIS); cubies[11].move(-1, Y_AXIS); cubies[11].move(0, Z_AXIS);
+    cubies[12].move(0, X_AXIS); cubies[12].move(-1, Y_AXIS); cubies[12].move(0, Z_AXIS);
+    cubies[13].move(1, X_AXIS); cubies[13].move(-1, Y_AXIS); cubies[13].move(0, Z_AXIS);
+    cubies[14].move(0, X_AXIS); cubies[14].move(1, Y_AXIS); cubies[14].move(0, Z_AXIS);
+    cubies[15].move(1, X_AXIS); cubies[15].move(1, Y_AXIS); cubies[15].move(0, Z_AXIS);
+    cubies[16].move(-1, X_AXIS); cubies[16].move(1, Y_AXIS); cubies[16].move(1, Z_AXIS);
+    cubies[17].move(-1, X_AXIS); cubies[17].move(0, Y_AXIS); cubies[17].move(1, Z_AXIS);
+    cubies[18].move(-1, X_AXIS); cubies[18].move(-1, Y_AXIS); cubies[18].move(1, Z_AXIS);
+    cubies[19].move(0, X_AXIS); cubies[19].move(-1, Y_AXIS); cubies[19].move(1, Z_AXIS);
+    cubies[20].move(1, X_AXIS); cubies[20].move(-1, Y_AXIS); cubies[20].move(1, Z_AXIS);
+    cubies[21].move(1, X_AXIS); cubies[21].move(0, Y_AXIS); cubies[21].move(1, Z_AXIS);
+    cubies[22].move(1, X_AXIS); cubies[22].move(1, Y_AXIS); cubies[22].move(1, Z_AXIS);
+    cubies[23].move(0, X_AXIS); cubies[23].move(0, Y_AXIS); cubies[23].move(1, Z_AXIS);
+    cubies[24].move(0, X_AXIS); cubies[24].move(1, Y_AXIS); cubies[24].move(1, Z_AXIS);
+    cubies[25].move(0, X_AXIS); cubies[25].move(0, Y_AXIS); cubies[25].move(1, Z_AXIS);
     /*
     var colors = new CubeColors();
     colors.set(CUBE_TOP, WHITE);

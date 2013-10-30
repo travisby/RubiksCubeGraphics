@@ -14,7 +14,9 @@ function RubiksCube() {
     cubies[i] = new Cubie();
   }
 
-  console.log(cubies);
+
+
+    console.log(cubies);
 
   // used by Model for drawing
   this.setDrawables(cubies);
