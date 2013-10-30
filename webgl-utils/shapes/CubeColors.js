@@ -30,7 +30,6 @@ CubeColors.prototype.getColors = function() {
     return myColors;
 }
 
-
 CubeColors.prototype.reset = function() {
     this.colors = [];
     for(var i = 0; i < this.FACE_CONSTANTS; i++) {
