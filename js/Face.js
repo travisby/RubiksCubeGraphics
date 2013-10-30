@@ -18,6 +18,8 @@ function Face(cubies) {
   }
 
 
+
+
 }
 
 Face.prototype = Object.create(Model.prototype);
@@ -64,6 +66,9 @@ Face.prototype.setColorsByString = function(colors) {
     cubies[6].move(-1, X_AXIS); cubies[6].move(-1, Y_AXIS);
     cubies[7].move(-1, Y_AXIS);
     cubies[8].move(1, X_AXIS); cubies[8].move(-1, Y_AXIS);
+
+    this.rotate(90, directionToAxis(this.DIRECTION));
+    this.move(this.numtoMoveInMyDirection, directionToAxis(this.DIRECTION));
 }
 
 
@@ -74,13 +79,15 @@ function BackFace(cubies) {
 BackFace.prototype = Object.create(Face.prototype);
 BackFace.prototype.constructor = Face;
 BackFace.prototype.DIRECTION = CUBE_BACK;
+BackFace.prototype.numtoMoveInMyDirection = -1;
 
 function LeftFace(cubies) {
-  Face.apply(this, [cubies]);
+  Face.apply(this, [cubies]);;
 }
 LeftFace.prototype = Object.create(Face.prototype);
 LeftFace.prototype.constructor = Face;
 LeftFace.prototype.DIRECTION = CUBE_LEFT;
+LeftFace.prototype.numtoMoveInMyDirection = -1;
 
 function RightFace(cubies) {
   Face.apply(this, [cubies]);
@@ -88,6 +95,7 @@ function RightFace(cubies) {
 RightFace.prototype = Object.create(Face.prototype);
 RightFace.prototype.constructor = Face;
 RightFace.prototype.DIRECTION = CUBE_RIGHT;
+RightFace.prototype.numtoMoveInMyDirection = 1;
 
 function FrontFace(cubies) {
   Face.apply(this, [cubies]);
@@ -95,6 +103,7 @@ function FrontFace(cubies) {
 FrontFace.prototype = Object.create(Face.prototype);
 FrontFace.prototype.constructor = Face;
 FrontFace.prototype.DIRECTION = CUBE_FRONT;
+FrontFace.prototype.numtoMoveInMyDirection = 1;
 
 function DownFace(cubies) {
   Face.apply(this, [cubies]);
@@ -102,6 +111,7 @@ function DownFace(cubies) {
 DownFace.prototype = Object.create(Face.prototype);
 DownFace.prototype.constructor = Face;
 DownFace.prototype.DIRECTION = CUBE_BOTTOM;
+DownFace.prototype.numtoMoveInMyDirection = -1;
 
 function UpFace(cubies) {
   Face.apply(this, [cubies]);
@@ -109,3 +119,4 @@ function UpFace(cubies) {
 UpFace.prototype = Object.create(Face.prototype);
 UpFace.prototype.constructor = Face;
 UpFace.prototype.DIRECTION = CUBE_TOP;
+UpFace.prototype.numtoMoveInMyDirection = 1;
