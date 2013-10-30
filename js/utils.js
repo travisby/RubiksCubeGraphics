@@ -11,3 +11,20 @@ function fileToString(file, callback) {
 
     reader.readAsText(file);
 }
+
+function directionToAxis(direction) {
+    switch (direction) {
+        case CUBE_TOP:
+            return X_AXIS;
+        case CUBE_BOTTOM:
+            return X_AXIS;
+        case CUBE_LEFT:
+            return Z_AXIS;
+        case CUBE_RIGHT:
+            return Z_AXIS;
+        case CUBE_FRONT:
+            return Y_AXIS;
+        case CUBE_BACK:
+            return Y_AXIS;
+    }
+}
