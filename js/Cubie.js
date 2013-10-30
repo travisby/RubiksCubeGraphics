@@ -1,5 +1,8 @@
 function Cubie() {
   Model.apply(this, []);
+  
+  var colors = new CubeColors();
+
   var x = 0;
   var y = 0;
   var z = 0;
