@@ -69,7 +69,7 @@ RubiksCube.prototype.turnByString = function(str) {
 
   // FINISH HIM... TAKE THAT ASYNCHRONOUS JAVASCRIPT CALLS
   var finisher = function() {
-    rubiksCube.turnFace(movesQueue.pop());
+    rubiksCube.turnFace(movesQueue.shift());
     if(movesQueue.length > 0) {
       setTimeout(finisher, 1000);
     }
