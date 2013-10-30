@@ -3,38 +3,37 @@ var init = function() {
     var spinR = document.getElementById("spinR");
     spinR.addEventListener("click",
         function() {
-           rubiksCube.smoothOrbit(90, 1);
+          rubiksCube.turnFace(rubiksCube.getFaceByColor(RED));
         });
     
     var spinB = document.getElementById("spinB");
     spinB.addEventListener("click",
         function() {
-            console.log("test");
-            rubiksCube.smoothOrbit(-90, 1);
+          rubiksCube.turnFace(rubiksCube.getFaceByColor(BLUE));
         });
     
     var spinW = document.getElementById("spinW");
     spinW.addEventListener("click",
         function() {
-            //TODO
+            rubiksCube.turnFace(rubiksCube.getFaceByColor(WHITE));
         });
 
     var spinO = document.getElementById("spinO");
     spinO.addEventListener("click",
         function() {
-            //TODO
+          rubiksCube.turnFace(rubiksCube.getFaceByColor(ORANGE));
         });
     
     var spinY = document.getElementById("spinY");
     spinY.addEventListener("click",
         function() {
-            //TODO
+          rubiksCube.turnFace(rubiksCube.getFaceByColor(YELLOW));
         });
     
     var spinG = document.getElementById("spinG");
     spinG.addEventListener("click",
         function() {
-            //TODO
+          rubiksCube.turnFace(rubiksCube.getFaceByColor(GREEN));
         });
     
     var zoomIn = document.getElementById("zoomIn");
