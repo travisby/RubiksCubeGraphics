@@ -1,9 +1,5 @@
 function Cubie() {
-  
-  var colors = new CubeColors();
-  colors.set(CUBE_FRONT, RED);
-  colors.set(CUBE_RIGHT, GREEN);
-  FancySolidCube.apply(this, [this.material, colors]);
+  Model.apply(this, []);
   var x = 0;
   var y = 0;
   var z = 0;
@@ -60,7 +56,7 @@ function Cubie() {
   }
 }
 
-Cubie.prototype = Object.create(FancySolidCube.prototype);
+Cubie.prototype = Object.create(Model.prototype);
 Cubie.prototype.constructor = Cubie;
 
 Cubie.prototype.material = new Material(new vec4(.1,.1,.1,.1), vec4(1,1,1,1), vec4(1,1,1,1), 10);
