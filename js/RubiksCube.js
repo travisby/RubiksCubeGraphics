@@ -3,7 +3,7 @@ function RubiksCube(colors) {
     this.colors = colors; 
     this.cubes = [];
     var count = 0;
-    var mat = new Material(vec4(.1,.1,.1,1), vec4(.1,.1,.1,1), vec4(.1,.1,.1,1), 100);
+    var mat = new Material(vec4(1,1,1,1), vec4(.1,.1,.1,1), vec4(1,1,1,1), 10);
     
     for(var x = 0; x <= 2; x++) {
         this.cubes[x] = [];
@@ -12,12 +12,6 @@ function RubiksCube(colors) {
             this.cubes[x][y] = [];
              for(var z = 0; z <= 2; z++) {
                 var c = this.colors[count];
-                console.log(c);
-                console.log(x);
-                console.log(y);
-                console.log(z); 
-                console.log(count);
-                console.log("------------"); 
                 if(x == 1 && y == 1 && z == 1) {
                     console.log("Test");
                 }

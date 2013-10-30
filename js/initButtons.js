@@ -64,6 +64,7 @@ var init = function() {
               function(e) {
                 var textFromFile = e.target.result;
                 // GLOBAL
+                console.log(textFromFile);
                 rubiksCube = RubiksCubeFromString(textFromFile);
                 sceneA.remove();
                 sceneB.remove();
