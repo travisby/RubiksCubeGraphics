@@ -23,6 +23,7 @@ function RubiksCube(colors) {
                 }
                 else {
                     count++;
+           
                     this.cubes[x][y][z] = new SolidCube(mat, c);
                     this.add(this.cubes[x][y][z]);
                     this.cubes[x][y][z].move((x - 1) * 1.1, X_AXIS);
@@ -37,6 +38,190 @@ function RubiksCube(colors) {
 RubiksCube.prototype = Object.create(Model.prototype);
 RubiksCube.prototype.constructor = RubiksCube;
 
+RubiksCube.prototype.turnFace = function (face) {
+    if(face == 'b') {
+        this.rotateColumn(2,1);
+    }    
+    else if(face == 'g') {
+        this.rotateColumn(0,1);
+    }
+    else if(face == 'r') {
+        this.rotateDepth(0,0);
+    }
+    else if(face == 'o') {
+        this.rotateDepth(2,0);
+    }
+    else if(face == 'w') {
+        this.rotateRow(2,1);
+    }
+    else if(face == 'y') {
+        this.rotateRow(0,1);
+    }
+}
+RubiksCube.prototype.rotateRow = function(row, dir) {
+    for(var x = 0; x < this.cubes.length; x++) {
+        for(var z = 0; z < this.cubes[x][row].length; z++) {
+            if(dir === 0) {
+                    this.cubes[x][row][z].smoothOrbit(90, Y_AXIS);
+            }
+            else {
+                    this.cubes[x][row][z].smoothOrbit(-90, Y_AXIS);
+            }
+        }
+    }
+    this.swapRow(row, dir);
+    
+}
+
+RubiksCube.prototype.rotateDepth = function(row, dir) {
+    
+    for(var x = 0; x < this.cubes.length; x++) {
+        for(var y = 0; y < this.cubes[x].length; y++) {
+            if(dir === 0) {
+                    this.cubes[x][y][row].smoothOrbit(90, Z_AXIS);
+            }
+            else {
+                    this.cubes[x][y][row].smoothOrbit(-90, Z_AXIS);
+            }
+        }
+    }
+    this.swapDepth(row, dir);
+}
+
+RubiksCube.prototype.swapDepth = function(row, dir) {
+
+    var top =       this.cubes[1][2][row];
+    var bottom =    this.cubes[1][0][row];
+    var left =      this.cubes[0][1][row];
+    var right =     this.cubes[2][1][row];
+    
+    var topLeft =       this.cubes[0][2][row];
+    var bottomLeft =    this.cubes[0][0][row];
+    var bottomRight =   this.cubes[2][0][row];
+    var topRight =      this.cubes[2][2][row];
+    
+    if(dir === 0) {
+        this.cubes[1][2][row] = right;
+        this.cubes[0][1][row] = top;
+        this.cubes[1][0][row] = left;
+        this.cubes[2][1][row] = bottom;
+    } 
+    else {
+        this.cubes[1][2][row] = left;
+        this.cubes[0][1][row] = bottom;
+        this.cubes[1][0][row] = right;
+        this.cubes[2][1][row] = top;
+    }
+    
+    if(dir === 0) {
+        this.cubes[0][2][row] = topRight;
+        this.cubes[0][0][row] = topLeft;
+        this.cubes[2][0][row] = bottomLeft;
+        this.cubes[2][2][row] = bottomRight;
+    }
+    else {
+        this.cubes[0][2][row] = topLeft;
+        this.cubes[0][0][row] = topRight;
+        this.cubes[2][0][row] = bottomRight;
+        this.cubes[2][2][row] = bottomLeft;
+    }
+}
+
+RubiksCube.prototype.swapRow = function(row, dir) {
+
+    var top =       this.cubes[1][row][0];
+    var bottom =    this.cubes[1][row][this.cubes[1][row].length - 1];
+    var left =      this.cubes[0][row][1];
+    var right =     this.cubes[this.cubes.length - 1][row][1];
+    
+    var topLeft =       this.cubes[0][row][0];
+    var bottomLeft =    this.cubes[0][row][this.cubes[1][row].length - 1];
+    var bottomRight =   this.cubes[this.cubes.length - 1][row][this.cubes[1][row].length - 1];
+    var topRight =      this.cubes[this.cubes[1][row].length - 1][row][0];
+    
+    if(dir === 0) {
+        this.cubes[1][row][0] = right;
+        this.cubes[0][row][1] = top;
+        this.cubes[1][row][this.cubes[1][row].length - 1] = left;
+        this.cubes[this.cubes.length - 1][row][1] = bottom;
+    } 
+    else {
+        this.cubes[1][row][0] = left;
+        this.cubes[0][row][1] = bottom;
+        this.cubes[1][row][this.cubes[1][row].length - 1] = right;
+        this.cubes[this.cubes.length - 1][row][1] = top;
+    }
+    
+    if(dir === 0) {
+        this.cubes[0][row][0] = topRight;
+        this.cubes[0][row][this.cubes[1][row].length - 1] = topLeft;
+        this.cubes[this.cubes.length - 1][row][this.cubes[1][row].length - 1] = bottomLeft;
+        this.cubes[this.cubes[1][row].length - 1][row][0] = bottomRight;
+    }
+    else {
+        this.cubes[0][row][0] = bottomLeft;
+        this.cubes[0][row][this.cubes[1][row].length - 1] = bottomRight;
+        this.cubes[this.cubes.length - 1][row][this.cubes[1][row].length - 1] = topRight;
+        this.cubes[this.cubes[1][row].length - 1][row][0] = topLeft;
+    }
+}
+
+
+RubiksCube.prototype.rotateColumn = function(column, dir) {
+    for(var y = 0; y < this.cubes[column].length; y++) {
+        for(var z = 0; z < this.cubes[column][y].length; z++) {
+            if(dir === 0) {
+                this.cubes[column][y][z].smoothOrbit(-90, X_AXIS);
+            }
+            else {
+                this.cubes[column][y][z].smoothOrbit(90, X_AXIS);
+            }               
+        }
+    }
+    this.swapColumn(column, dir);
+}
+
+this.RubiksCube.prototype.swapColumn = function(column, dir) {
+
+    var yLength = this.cubes[column].length - 1;
+    var zLength = this.cubes[column].length - 1;
+    
+    var top =       this.cubes[column][this.cubes[column].length - 1][1];
+    var bottom =    this.cubes[column][0][1];
+    var left =      this.cubes[column][1][this.cubes[column][1].length - 1];
+    var right =     this.cubes[column][1][0];
+    
+    var topLeft =       this.cubes[column][yLength][zLength];
+    var bottomLeft =    this.cubes[column][0][zLength];
+    var bottomRight =   this.cubes[column][0][0];
+    var topRight =      this.cubes[column][yLength][0];
+    
+    if(dir === 0) {
+        this.cubes[column][this.cubes[column].length - 1][1] = left;
+        this.cubes[column][0][1] = right;
+        this.cubes[column][1][this.cubes[column][1].length - 1] = bottom;
+        this.cubes[column][1][0] = top;
+    }
+    else {
+        this.cubes[column][this.cubes[column].length - 1][1] = right;
+        this.cubes[column][0][1] = left;
+        this.cubes[column][1][this.cubes[column][1].length - 1] = top;
+        this.cubes[column][1][0] = bottom;
+    }
+    
+    if(dir === 0) {
+        this.cubes[column][yLength][zLength] = bottomLeft;
+        this.cubes[column][0][zLength] = bottomRight;
+        this.cubes[column][0][0] = topRight;
+        this.cubes[column][yLength][0] = topLeft;
+    }
+    else {
+        this.cubes[column][yLength][zLength] = topRight;
+        this.cubes[column][0][zLength] = topLeft;
+        this.cubes[column][0][0] = bottomLeft;
+        this.cubes[column][yLength][0] = bottomRight;
+    }
+}
 
 function RubiksCubeFromString(input) {
    

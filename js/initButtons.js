@@ -3,38 +3,41 @@ var init = function() {
     var spinR = document.getElementById("spinR");
     spinR.addEventListener("click",
         function() {
-           rubiksCube.smoothOrbit(90, 1);
+            rubiksCube.turnFace('r');
         });
     
     var spinB = document.getElementById("spinB");
     spinB.addEventListener("click",
         function() {
-            console.log("test");
-            rubiksCube.smoothOrbit(-90, 1);
+            rubiksCube.turnFace('b');
         });
     
     var spinW = document.getElementById("spinW");
     spinW.addEventListener("click",
         function() {
             //TODO
+            rubiksCube.turnFace('w');
         });
 
     var spinO = document.getElementById("spinO");
     spinO.addEventListener("click",
         function() {
             //TODO
+            rubiksCube.turnFace('o');
         });
     
     var spinY = document.getElementById("spinY");
     spinY.addEventListener("click",
         function() {
             //TODO
+            rubiksCube.turnFace('y');
         });
     
     var spinG = document.getElementById("spinG");
     spinG.addEventListener("click",
         function() {
             //TODO
+            rubiksCube.turnFace('g');
         });
     
     var zoomIn = document.getElementById("zoomIn");
