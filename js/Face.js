@@ -4,7 +4,7 @@
  * @constructor
  */
 function Face(cubies) {
-
+  Model.apply(this, []);
   // should be set in each subclass
   /**
    *
@@ -28,7 +28,7 @@ Face.prototype.turn = function() {
   // TODO
 }
 
-Face.prototype = new Model();
+Face.prototype = Object.create(Model.prototype);
 Face.prototype.constructor = Face;
 
 /**
