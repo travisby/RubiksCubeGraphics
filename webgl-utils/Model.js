@@ -18,18 +18,18 @@ Model.prototype.draw = function(gl, shader, light, camera) {
 
 Model.prototype.move = function(distance, axis) {
     for(var i in this.drawables) {
-        drawables[i].move(distance, axis);
+        this.drawables[i].move(distance, axis);
     }
 }
 
 Model.prototype.rotate = function(angle, axis) {
     for(var i in this.drawables) {
-        drawables[i].rotate(angle, axis);
+        this.drawables[i].rotate(angle, axis);
     }
 }
 
 Model.prototype.orbit = function(angle, axis) {
     for(var i in this.drawables) {
-        drawables[i].orbit(angle, axis);
+        this.drawables[i].orbit(angle, axis);
     }
 }
