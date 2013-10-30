@@ -27,12 +27,14 @@ window.onload = function() {
     var rubiksCube = RubiksCubeFactoryFromString("GGWRRGRRGOWWGGOYYROGOYYYRBRYYYRBGRWWBOYBOBBOBOGOWWBWWB"); 
     
     var colors = new CubeColors();
-    colors.set(CUBE_TOP, [1, 1, 1, 1]);
-    colors.set(CUBE_BOTTOM, [1, 1, 0, 1]);
-    colors.set(CUBE_LEFT, [1, 0, 1, 1]);
-    colors.set(CUBE_RIGHT, [0, 1, 1, 1]);
-    colors.set(CUBE_FRONT, [0, 0, 1, 1]);
-    colors.set(CUBE_BACK, [0, 1, 0, 1]);
+    
+    colors.set(CUBE_TOP, WHITE);
+    colors.set(CUBE_BOTTOM, YELLOW);
+    colors.set(CUBE_LEFT, ORANGE);
+    colors.set(CUBE_RIGHT, RED);
+    colors.set(CUBE_FRONT, BLUE);
+    colors.set(CUBE_BACK, GREEN);
+    rubiksCube = new SolidCube(new Material(vec4(1,1,1,1), vec4(1,1,1,1), vec4(.001,.001,.001,.1), 100000), colors);
     
     sceneA.add(rubiksCube);
     sceneB.add(rubiksCube);

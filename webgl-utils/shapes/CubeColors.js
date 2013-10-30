@@ -9,8 +9,13 @@ var CubeColors = function() {
     this.colors = [];
     this.reset();
 }
+CubeColors.prototype.FACE_CONSTANTS = [CUBE_FRONT, CUBE_LEFT, CUBE_TOP, CUBE_RIGHT, CUBE_BACK, CUBE_BOTTOM];
 
 CubeColors.prototype.getColors = function() {
+    var myColors = [];
+    for (var i = 0; i < this.FACE_CONSTANTS.length; i++) {
+      myColors[i] = [this.colors[i].r, this.colors[i].b, this.colors[i].g, this.colors[i].alpha];
+    }
     return this.colors;
 }
 
@@ -20,7 +25,7 @@ CubeColors.prototype.set = function(face, color) {
 
 CubeColors.prototype.reset = function() {
     this.colors = [];
-    for(var i = 0; i < 6; i++) {
-        this.colors.push([0.0, 0.0, 0.0, 1.0]);
+    for(var i = 0; i < this.FACE_CONSTANTS; i++) {
+        this.colors.push(NOCOLOR);
     }
 }
