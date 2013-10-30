@@ -40,11 +40,11 @@ function SolidCuboid(material, colors, width, height, depth) {
     this.makeSide = function( topLeft, topRight, bottomRight, bottomLeft, color )
     {
         var t1 = subtract(this.vertices[topRight], this.vertices[topLeft]);
-        var t2 = subtract(this.vertices[bottomRight], this.vertices[topRight]);
+        var t2 = subtract(this.vertices[bottomRight], this.vertices[bottomLeft]);
         var normal = cross(t1, t2);
-        normal = vec3(normal);
-        //normal = normalize(normal);
-        
+        normal = normalize(normal);
+        normal[3] = 0;        
+
         this.points.push(vec4(this.vertices[topLeft]));
         this.colorVectors.push(vec4(color));
         this.normalVectors.push(normal);
@@ -56,6 +56,11 @@ function SolidCuboid(material, colors, width, height, depth) {
         this.points.push(vec4(this.vertices[bottomRight]));
         this.colorVectors.push(vec4(color));                
         this.normalVectors.push(normal);
+
+        t1 = subtract(this.vertices[bottomRight], this.vertices[topLeft]);
+        t2 = subtract(this.vertices[bottomLeft], this.vertices[topLeft]);
+        normal = cross(t1, t2);
+        normal = normalize(normal);
 
         this.points.push(vec4(this.vertices[topLeft]));           
         this.colorVectors.push(vec4(color));

@@ -5,7 +5,7 @@
         
     <script id="vertex-shader" type="x-shader/x-vertex">
         attribute   vec4 positionVertex;
-        attribute   vec3 normalVertex;
+        attribute   vec4 normalVertex;
         attribute   vec4 vertexColor;    
     
         varying     vec4 lightColor;
@@ -24,10 +24,8 @@
             
             vec3 E = normalize( -pos );
             vec3 H = normalize( L + E );
-            
-            vec4 NN = vec4(normalVertex,0);
                
-            vec3 N = normalize( (transformation*NN).xyz);
+            vec3 N = normalize( (transformation*normalVertex).xyz);
 
             vec4 ambient = ambientProduct;
 
@@ -60,7 +58,6 @@
             gl_FragColor = lightColor;
         }
     </script>
-    <script type="text/javascript" src="js/onload.js"></script>
     <script type="text/javascript" src="webgl-utils/shapes/Shape.js"></script>
     <script type="text/javascript" src="webgl-utils/Light.js"></script>
     <script type="text/javascript" src="webgl-utils/Material.js"></script>
@@ -80,10 +77,28 @@
     <script type="text/javascript" src="js/utils.js"></script>
     <script type="text/javascript" src="webgl-utils/shapes/CubeColors.js"></script>
     <script type="text/javascript" src="webgl-utils/Scene.js"></script>
+    <script type="text/javascript" src="js/initButtons.js"></script>
+    <script type="text/javascript" src="js/onload.js"></script>
 </head>
-<body style="background-color:black;text-align:center">
+<body style="background-color:grey;text-align:center">
 
-    <canvas id="cubeCanvas" width="512" height="512" style="background: blue">Sorry, your browser does not support WebGL.</canvas>
+    <canvas id="canvasA" width="512" height="512" style="background: blue">Sorry, your browser does not support WebGL.</canvas>
 
+    <canvas id="canvasB" width="512" height="512" style="background: blue">Sorry, your browser does not support WebGL.</canvas>
+
+<div>
+    <button id="spinR">Turn Red</button>
+    <button id="spinB">Turn Blue</button>
+    <button id="spinW">Turn White</button>
+    <button id="spinO">Turn Orange</button>
+    <button id="spinY">Turn Yellow</button>
+    <button id="spinG">Turn Green</button>
+    </br></br>
+    <button id="zoomIn">Zoom In</button>
+    <button id="zoomOut">Zoom Out</button>
+    </br></br>
+    <button id="state">State</button>
+    <button id="solve">Solve</button>
+</div>
 </body>
 </html>
