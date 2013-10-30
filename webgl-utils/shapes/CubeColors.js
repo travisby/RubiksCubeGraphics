@@ -25,6 +25,7 @@ CubeColors.prototype.massSet = function(faces, colors) {
     for(var i in faces) {
         this.set(faces[i], colors[i]);
     }
+    return this;
 }
 
 CubeColors.prototype.colors = [NOCOLOR, NOCOLOR, NOCOLOR, NOCOLOR, NOCOLOR, NOCOLOR];

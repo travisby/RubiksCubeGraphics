@@ -17,7 +17,7 @@ function RubiksCube(colors) {
                     continue;
                 }
                 else {
-                    console.log(this.colors[0]);
+                    console.log(this.colors[count]);
                     this.cubes[x][y][z] = new FancySolidCube(this.colors[count]);
                     this.cubes[x][y][z].move(x * 1.1, X_AXIS);
                     this.cubes[x][y][z].move(y * 1.1, Y_AXIS);
