@@ -81,3 +81,12 @@ function SolidCuboid(material, colors, width, height, depth) {
 
 SolidCuboid.prototype = Object.create(Shape.prototype);
 SolidCuboid.prototype.constructor = SolidCuboid;
+
+SolidCuboid.prototype.changeColors(colors) {
+    this.colors = colors;
+    this.colorVectors = [];
+    this.points = [];
+    this.normals = [];
+
+    this.makeCuboid();
+}
