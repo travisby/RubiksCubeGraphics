@@ -12,37 +12,32 @@ const R    = 3;
 const BA     = 4;
 const BO   = 5;
 
-function CubeColors(faces, colors) {
-    if(faces != undefined && colors != undefined) {
-        this.massSet(faces, colors);
-    }
+var CubeColors = function(faces, colors) {
+    this.colors = [];
+    this.reset();
+    this.massSet(faces, colors);
+    return this.colors;
 }
-
-CubeColors.prototype.FACE_CONSTANTS = [CUBE_FRONT, CUBE_LEFT, CUBE_TOP, CUBE_RIGHT, CUBE_BACK, CUBE_BOTTOM];
 
 CubeColors.prototype.set = function(face, color) {
     this.colors[face] = color;
 }
 
-CubeColors.prototype.colors = [NOCOLOR, NOCOLOR, NOCOLOR, NOCOLOR, NOCOLOR, NOCOLOR];
+CubeColors.prototype.colors = [[0,0,0,1],  [0,0,0,1], [0,0,0,1], [0,0,0,1], [0,0,0,1], [0,0,0,1]];
 
 CubeColors.prototype.massSet = function(faces, colors) {
     for(var i = 0; i < faces.length; i++) {
         this.colors[faces[i]] =  colors[i];
-    }
+    }    
 }
 CubeColors.prototype.getColors = function() {
-    var myColors = [];
-    for (var i = 0; i < this.FACE_CONSTANTS.length; i++) {
-        myColors[i] = [this.colors[i].r, this.colors[i].g, this.colors[i].b, this.colors[i].alpha];
-    }
-    return myColors;
+    return this.colors;
 }
 
 CubeColors.prototype.reset = function() {
     this.colors = [];
     for(var i = 0; i < 6; i++) {
-        this.colors.push(NOCOLOR);
+        this.colors.push([0,0,0,1]);
     
     }
 }

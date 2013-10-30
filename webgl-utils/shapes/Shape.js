@@ -18,7 +18,7 @@ var Shape = function(material, colors) {
 
 //Constructor parameter class variables
         this.material = material;
-        this.colors = colors.getColors();
+        this.colors = colors;
 
 //Other class variables
 
@@ -71,7 +71,17 @@ Shape.prototype.draw = function(gl, shader, light, camera) {
             this.lock = false;
         }
     }
-    gl.uniformMatrix4fv(gl.getUniformLocation(shader, "transformation"), false, flatten(this.transformation));
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.colorBuffer);
+    var vertexColor = gl.getAttribLocation( shader, "vertexColor" );
+    gl.vertexAttribPointer( vertexColor, 4, gl.FLOAT, false, 0, 0 );
+    gl.enableVertexAttribArray( vertexColor );
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.pointBuffer);
+    
+    var positionVertex = gl.getAttribLocation( shader, "positionVertex" );
+    gl.vertexAttribPointer( positionVertex, 4, gl.FLOAT, false, 0, 0 );
+    gl.enableVertexAttribArray( positionVertex );
+     gl.uniformMatrix4fv(gl.getUniformLocation(shader, "transformation"), false, flatten(this.transformation));
+     gl.drawArrays( gl.TRIANGLES, 0, this.points.length);
 }
 
 
@@ -139,21 +149,14 @@ Shape.prototype.setupWebGL = function(gl, shader, light, camera) {
     gl.bindBuffer( gl.ARRAY_BUFFER, this.pointBuffer);
     gl.bufferData( gl.ARRAY_BUFFER, flatten(this.points), gl.STATIC_DRAW );
 
-    var positionVertex = gl.getAttribLocation( shader, "positionVertex" );
-    gl.vertexAttribPointer( positionVertex, 4, gl.FLOAT, false, 0, 0 );
-    gl.enableVertexAttribArray( positionVertex );
     
     //Creates a buffer for the color vector data
     this.colorBuffer = gl.createBuffer();
-    
     gl.bindBuffer( gl.ARRAY_BUFFER, this.colorBuffer);
     gl.bufferData( gl.ARRAY_BUFFER, flatten(this.colorVectors), gl.STATIC_DRAW );
-    var vertexColor = gl.getAttribLocation( shader, "vertexColor" );
-    gl.vertexAttribPointer( vertexColor, 4, gl.FLOAT, false, 0, 0 );
-    gl.enableVertexAttribArray( vertexColor );
     
     //Creates a buffer for the normal vector data
-    gl.bindBuffer(gl.ARRAY_BUFFER, this.pointBuffer);    
+    //gl.bindBuffer(gl.ARRAY_BUFFER, this.pointBuffer);    
     var normalVertex = gl.getAttribLocation( shader, "normalVertex" );
     gl.vertexAttribPointer( normalVertex, 4, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( normalVertex );
@@ -165,5 +168,4 @@ Shape.prototype.setupWebGL = function(gl, shader, light, camera) {
     gl.uniform4fv(gl.getUniformLocation(shader, "lightPosition"), flatten(light.position));
     gl.uniform1f(gl.getUniformLocation(shader, "shininess"), this.material.shininess);
     
-    gl.drawArrays( gl.TRIANGLES, 0, this.points.length);
 }

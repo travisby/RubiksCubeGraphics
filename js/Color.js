@@ -63,19 +63,19 @@ YELLOW = new Yellow();
 function charToColor(char) {
   switch (char) {
     case 'W':
-      return WHITE;
+      return [1,1,1,1];
     case 'R':
-      return RED;
+      return [1,0,0,1];
     case 'B':
-      return BLUE;
+      return [0,0,1,1];
     case 'O':
-      return ORANGE;
+      return [1,.5,0,1];
     case 'G':
-      return GREEN;
+      return [0,1,0,1];
     case 'Y':
-      return YELLOW;
+      return [1,1,0,1];
     default:
-      return NOCOLOR;
+      return [0,0,0,1];
   }
 }
 
