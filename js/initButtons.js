@@ -10,7 +10,7 @@ var init = function() {
     spinB.addEventListener("click",
         function() {
             console.log("test");
-            rubiksCube.smoothOrbit(-90, 1);
+            rubiksCube.smoothOrbit(-90, 2);
         });
     
     var spinW = document.getElementById("spinW");

@@ -24,15 +24,15 @@ Light.prototype.setSpecular = function(red, green, blue, alpha) {
 }
 
 Light.prototype.ambientProduct = function(material) {
-    return mult(this.ambient, material.ambient);
+    return mult(this.ambient, material);
 }
 
 Light.prototype.diffuseProduct = function(material) {
-    return mult(this.diffuse, material.diffuse);
+    return mult(this.diffuse, material);
 }
 
 Light.prototype.specularProduct = function(material) {
-    return mult(this.specular, material.specular);
+    return mult(this.specular, material);
 } 
 
 

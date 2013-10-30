@@ -6,15 +6,14 @@
     <script id="vertex-shader" type="x-shader/x-vertex">
         attribute   vec4 positionVertex;
         attribute   vec4 normalVertex;
-        attribute   vec4 vertexColor;    
     
         varying     vec4 lightColor;
 
-        uniform     vec4 ambientProduct, diffuseProduct, specularProduct;
-        uniform     mat4 transformation;
-        uniform     mat4 projection;
-        uniform     vec4 lightPosition;
-        uniform     float shininess;
+        attribute       vec4    ambientProduct, diffuseProduct, specularProduct;
+        uniform         mat4    transformation;
+        uniform         mat4    projection;
+        uniform         vec4    lightPosition;
+        attribute       float   shininess;
         void main()
         {
             vec3 pos = -(transformation * positionVertex).xyz;
@@ -40,7 +39,7 @@
             } 
             
             gl_Position = projection * transformation * positionVertex;
-            lightColor = ambient + diffuse + specular + vertexColor;
+            lightColor = ambient + diffuse + specular;
             
             lightColor.a = 1.0;
         }

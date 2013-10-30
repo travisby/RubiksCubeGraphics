@@ -44,17 +44,23 @@ function SolidCuboid(material, colors, width, height, depth) {
         var normal = cross(t1, t2);
         normal = normalize(normal);
         normal[3] = 0;        
-
+        console.log(color);
         this.points.push(vec4(this.vertices[topLeft]));
-        this.colorVectors.push(vec4(color));
+        this.amV.push(light.ambientProduct(color));
+        this.spV.push(light.specularProduct([1,1,1,.1]));
+        this.dfV.push(light.diffuseProduct([1,1,1,.1]));   
         this.normalVectors.push(normal);
         
         this.points.push(vec4(this.vertices[topRight]));
-        this.colorVectors.push(vec4(color)); 
+        this.amV.push(light.ambientProduct(color));
+        this.spV.push(light.specularProduct([1,1,1,.1]));
+        this.dfV.push(light.diffuseProduct([1,1,1,.1]));   
         this.normalVectors.push(normal);
         
         this.points.push(vec4(this.vertices[bottomRight]));
-        this.colorVectors.push(vec4(color));                
+        this.amV.push(light.ambientProduct(color));
+        this.spV.push(light.specularProduct([1,1,1,.1]));
+        this.dfV.push(light.diffuseProduct([1,1,1,.1]));   
         this.normalVectors.push(normal);
 
         t1 = subtract(this.vertices[bottomRight], this.vertices[topLeft]);
@@ -63,15 +69,21 @@ function SolidCuboid(material, colors, width, height, depth) {
         normal = normalize(normal);
 
         this.points.push(vec4(this.vertices[topLeft]));           
-        this.colorVectors.push(vec4(color));
+        this.amV.push(light.ambientProduct(color));
+        this.spV.push(light.specularProduct([1,1,1,1]));
+        this.dfV.push(light.diffuseProduct([1,1,1,1]));   
         this.normalVectors.push(normal);
 
         this.points.push(vec4(this.vertices[bottomRight]));
-        this.colorVectors.push(vec4(color));
+        this.amV.push(light.ambientProduct(color));
+        this.spV.push(light.specularProduct([1,1,1,1]));
+        this.dfV.push(light.diffuseProduct([1,1,1,1]));   
         this.normalVectors.push(normal);
 
         this.points.push(vec4(this.vertices[bottomLeft]));
-        this.colorVectors.push(vec4(color));   
+        this.amV.push(light.ambientProduct(color));
+        this.spV.push(light.specularProduct([1,1,1,1]));
+        this.dfV.push(light.diffuseProduct([1,1,1,1]));   
         this.normalVectors.push(normal);
     }
      

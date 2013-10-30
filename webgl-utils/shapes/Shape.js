@@ -32,6 +32,10 @@ var Shape = function(material, colors) {
         this.normalVectors = [];
 
         this.colorVectors = [];
+        
+        this.amV = [];
+        this.spV = [];
+        this.dfV = [];
 
         this.first = true;
         this.lock = false;
@@ -74,6 +78,8 @@ Shape.prototype.draw = function(gl, shader, light, camera) {
     }
     
     gl.uniformMatrix4fv(gl.getUniformLocation(shader, "transformation"), false, flatten(this.transformation));
+
+    gl.drawArrays( gl.TRIANGLES, 0, this.points.length);
 }
 
 
@@ -145,27 +151,40 @@ Shape.prototype.setupWebGL = function(gl, shader, light, camera) {
     gl.vertexAttribPointer( positionVertex, 4, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( positionVertex );
     
-    //Creates a buffer for the color vector data
-    this.colorBuffer = gl.createBuffer();
-    gl.bindBuffer( gl.ARRAY_BUFFER, this.colorBuffer);
-    gl.bufferData( gl.ARRAY_BUFFER, flatten(this.colorVectors), gl.STATIC_DRAW );
-    
-    var vertexColor = gl.getAttribLocation( shader, "vertexColor" );
-    gl.vertexAttribPointer( vertexColor, 4, gl.FLOAT, false, 0, 0 );
-    gl.enableVertexAttribArray( vertexColor );
-    
     //Creates a buffer for the normal vector data
-    gl.bindBuffer(gl.ARRAY_BUFFER, this.pointBuffer);    
+    //gl.bindBuffer(gl.ARRAY_BUFFER, this.pointBuffer);    
     var normalVertex = gl.getAttribLocation( shader, "normalVertex" );
     gl.vertexAttribPointer( normalVertex, 4, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( normalVertex );
+ 
+    
+    this.amB = gl.createBuffer();
+    gl.bindBuffer (gl.ARRAY_BUFFER, this.amB);
+    gl.bufferData( gl.ARRAY_BUFFER, flatten(this.amV), gl.STATIC_DRAW);  
    
+    var am = gl.getAttribLocation(shader, "ambientProduct");
+    gl.vertexAttribPointer(am, 4, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(am);
+      
+    this.spB = gl.createBuffer();
+    gl.bindBuffer (gl.ARRAY_BUFFER, this.spB);
+    gl.bufferData( gl.ARRAY_BUFFER, flatten(this.spV), gl.STATIC_DRAW);  
+   
+    var sp = gl.getAttribLocation(shader, "specularProduct");
+    gl.vertexAttribPointer(sp, 4, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(sp);
+    
+    this.dfB = gl.createBuffer();
+    gl.bindBuffer (gl.ARRAY_BUFFER, this.dfB);
+    gl.bufferData( gl.ARRAY_BUFFER, flatten(this.dfV), gl.STATIC_DRAW);  
+   
+    var df = gl.getAttribLocation(shader, "diffuseProduct");
+    gl.vertexAttribPointer(df, 4, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(df);
+    
     gl.uniformMatrix4fv(gl.getUniformLocation(shader, "projection"), false, flatten(camera.getProjection()));
-    gl.uniform4fv(gl.getUniformLocation(shader, "ambientProduct"), flatten(light.ambientProduct(this.material)));
-    gl.uniform4fv(gl.getUniformLocation(shader, "diffuseProduct"), flatten(light.diffuseProduct(this.material)));
-    gl.uniform4fv(gl.getUniformLocation(shader, "specularProduct"), flatten(light.specularProduct(this.material)));  
     gl.uniform4fv(gl.getUniformLocation(shader, "lightPosition"), flatten(light.position));
     gl.uniform1f(gl.getUniformLocation(shader, "shininess"), this.material.shininess);
     
-    gl.drawArrays( gl.TRIANGLES, 0, this.points.length);
+    
 }
