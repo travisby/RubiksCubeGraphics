@@ -51,7 +51,88 @@ RubiksCube.prototype.getFaces = function() {
  * @param {Face} face
  */
 RubiksCube.prototype.turnFace = function(face) {
+  var savedCubies = [];
+  var cubies = this._getCubies();
+
+
+  // visually turn
   face.turn();
+
+  // array turn
+  switch (face.u) {
+    case 0:
+        savedCubies = [cubies[0], cubies[1], cubies[2], cubies[3], cubies[4], cubies[5],cubies[6], cubies[7], cubies[8]];
+        cubies[0] = savedCubies[2];
+        cubies[1] = savedCubies[5];
+        cubies[2] = savedCubies[8];
+        cubies[3] = savedCubies[1];
+        cubies[4] = savedCubies[4];
+        cubies[5] = savedCubies[7];
+        cubies[6] = savedCubies[0];
+        cubies[7] = savedCubies[3];
+        cubies[8] = savedCubies[6];
+      break;
+    case 1:
+        savedCubies = [cubies[0], cubies[3], cubies[6], cubies[9], cubies[10], cubies[11], cubies[16], cubies[17], cubies[18]];
+      cubies[0] = savedCubies[2];
+      cubies[3] = savedCubies[5];
+      cubies[6] = savedCubies[8];
+      cubies[9] = savedCubies[1];
+      cubies[10] = savedCubies[4];
+      cubies[11] = savedCubies[7];
+      cubies[16] = savedCubies[0];
+      cubies[17] = savedCubies[3];
+      cubies[18] = savedCubies[6];
+      break;
+    case 2:
+        savedCubies = [cubies[6], cubies[7], cubies[8], cubies[11], cubies[12], cubies[13], cubies[18], cubies[19], cubies[20]];
+      cubies[6] = savedCubies[2];
+      cubies[7] = savedCubies[5];
+      cubies[8] = savedCubies[8];
+      cubies[11] = savedCubies[1];
+      cubies[12] = savedCubies[4];
+      cubies[13] = savedCubies[7];
+      cubies[18] = savedCubies[0];
+      cubies[19] = savedCubies[3];
+      cubies[20] = savedCubies[6];
+      break;
+    case 3:
+      savedCubies = [cubies[8], cubies[5], cubies[2], cubies[13], cubies[14], cubies[15], cubies[20], cubies[21], cubies[2]];
+        cubies[8] = savedCubies[2];
+        cubies[5] = savedCubies[5];
+        cubies[2] = savedCubies[8];
+        cubies[13] = savedCubies[1];
+        cubies[14] = savedCubies[4];
+        cubies[15] = savedCubies[7];
+        cubies[20] = savedCubies[0];
+        cubies[21] = savedCubies[3];
+        cubies[22] = savedCubies[6];
+      break;
+    case 4:
+        savedCubies = [cubies[18], cubies[19], cubies[20], cubies[17], cubies[23], cubies[21], cubies[16], cubies[24], cubies[22]];
+      cubies[18] = savedCubies[2];
+      cubies[19] = savedCubies[5];
+      cubies[20] = savedCubies[8];
+      cubies[17] = savedCubies[1];
+      cubies[23] = savedCubies[4];
+      cubies[21] = savedCubies[7];
+      cubies[16] = savedCubies[0];
+      cubies[24] = savedCubies[3];
+      cubies[22] = savedCubies[6];
+      break;
+    case 5:
+        savedCubies = [cubies[16], cubies[24], cubies[22], cubies[9], cubies[25], cubies[15], cubies[0], cubies[1], cubies[2]];
+      cubies[16] = savedCubies[6];
+      cubies[24] = savedCubies[3];
+      cubies[22] = savedCubies[0];
+      cubies[9] = savedCubies[7];
+      cubies[25] = savedCubies[4];
+      cubies[15] = savedCubies[1];
+      cubies[0] = savedCubies[8];
+      cubies[1] = savedCubies[5];
+      cubies[2] = savedCubies[2];
+      break;
+  }
 }
 
 /**

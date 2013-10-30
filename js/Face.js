@@ -25,6 +25,7 @@ function Face(cubies) {
 Face.prototype = Object.create(Model.prototype);
 Face.prototype.constructor = Face;
 Face.prototype.DIRECTION = NODIRECTION;
+Face.prototype.u = -1;
 
 Face.prototype.turn = function() {
     var cubies = this._getCubies();
@@ -69,6 +70,7 @@ BackFace.prototype.constructor = Face;
 BackFace.prototype.DIRECTION = CUBE_BACK;
 BackFace.prototype.numtoMoveInMyDirection = -1;
 BackFace.prototype.numDegreesToMove = 0;
+BackFace.prototype.u = 0;
 
 function LeftFace(cubies) {
   Face.apply(this, [cubies]);;
@@ -78,6 +80,7 @@ LeftFace.prototype.constructor = Face;
 LeftFace.prototype.DIRECTION = CUBE_LEFT;
 LeftFace.prototype.numtoMoveInMyDirection = -1;
 LeftFace.prototype.numDegreesToMove = 90;
+LeftFace.prototype.u = 1;
 
 function RightFace(cubies) {
   Face.apply(this, [cubies]);
@@ -87,6 +90,7 @@ RightFace.prototype.constructor = Face;
 RightFace.prototype.DIRECTION = CUBE_RIGHT;
 RightFace.prototype.numtoMoveInMyDirection = 1;
 RightFace.prototype.numDegreesToMove = 90;
+RightFace.prototype.u = 3;
 
 function FrontFace(cubies) {
   Face.apply(this, [cubies]);
@@ -96,6 +100,7 @@ FrontFace.prototype.constructor = Face;
 FrontFace.prototype.DIRECTION = CUBE_FRONT;
 FrontFace.prototype.numtoMoveInMyDirection = 1;
 FrontFace.prototype.numDegreesToMove = 0;
+FrontFace.prototype.u = 4;
 
 function DownFace(cubies) {
   Face.apply(this, [cubies]);
@@ -105,6 +110,7 @@ DownFace.prototype.constructor = Face;
 DownFace.prototype.DIRECTION = CUBE_BOTTOM;
 DownFace.prototype.numtoMoveInMyDirection = -1;
 DownFace.prototype.numDegreesToMove = 90;
+DownFace.prototype.u = 2;
 
 function UpFace(cubies) {
   Face.apply(this, [cubies]);
@@ -114,3 +120,4 @@ UpFace.prototype.constructor = Face;
 UpFace.prototype.DIRECTION = CUBE_TOP;
 UpFace.prototype.numtoMoveInMyDirection = 1;
 UpFace.prototype.numDegreesToMove = 90;
+UpFace.prototype.u = 5;

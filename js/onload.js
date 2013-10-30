@@ -40,7 +40,7 @@ window.onload = function() {
     cubies[11].move(-1, X_AXIS); cubies[11].move(-1, Y_AXIS); cubies[11].move(0, Z_AXIS);
     cubies[12].move(0, X_AXIS); cubies[12].move(-1, Y_AXIS); cubies[12].move(0, Z_AXIS);
     cubies[13].move(1, X_AXIS); cubies[13].move(-1, Y_AXIS); cubies[13].move(0, Z_AXIS);
-    cubies[14].move(0, X_AXIS); cubies[14].move(1, Y_AXIS); cubies[14].move(0, Z_AXIS);
+    cubies[14].move(1, X_AXIS); cubies[14].move(0, Y_AXIS); cubies[14].move(0, Z_AXIS);
     cubies[15].move(1, X_AXIS); cubies[15].move(1, Y_AXIS); cubies[15].move(0, Z_AXIS);
     cubies[16].move(-1, X_AXIS); cubies[16].move(1, Y_AXIS); cubies[16].move(1, Z_AXIS);
     cubies[17].move(-1, X_AXIS); cubies[17].move(0, Y_AXIS); cubies[17].move(1, Z_AXIS);
@@ -51,7 +51,7 @@ window.onload = function() {
     cubies[22].move(1, X_AXIS); cubies[22].move(1, Y_AXIS); cubies[22].move(1, Z_AXIS);
     cubies[23].move(0, X_AXIS); cubies[23].move(0, Y_AXIS); cubies[23].move(1, Z_AXIS);
     cubies[24].move(0, X_AXIS); cubies[24].move(1, Y_AXIS); cubies[24].move(1, Z_AXIS);
-    cubies[25].move(0, X_AXIS); cubies[25].move(0, Y_AXIS); cubies[25].move(1, Z_AXIS);
+    cubies[25].move(0, X_AXIS); cubies[25].move(1, Y_AXIS); cubies[25].move(0, Z_AXIS);
     /*
     var colors = new CubeColors();
     colors.set(CUBE_TOP, WHITE);
