@@ -2,6 +2,10 @@ var cameraA;
 var cameraB;
 var rubiksCube;
 var light;
+
+var sceneA;
+var sceneB;
+
 window.onload = function() {
     init();
     cameraA = new Camera();
@@ -22,9 +26,9 @@ window.onload = function() {
     light.setDiffuse(1,1,1,1);
     light.setAmbient(1,1,1,.1);
 
-    var sceneA = new Scene("canvasA", light, cameraA);
-    var sceneB = new Scene("canvasB", light, cameraB); 
-    rubiksCube = RubiksCubeFromString("RRRRRRRRRGGGYYYBBBGGGYYYBBBGGGYYYBBBOOOOOOOOOWWWWWWWWW");
+    sceneA = new Scene("canvasA", light, cameraA);
+    sceneB = new Scene("canvasB", light, cameraB); 
+    rubiksCube = RubiksCubeFromString("GGWRRGRRGOWWGGOYYROGOYYYRBRYYYRBGRWWBOYBOBBOBOGOWWBWWB");
     sceneA.add(rubiksCube);
     sceneB.add(rubiksCube);
     sceneA.render();

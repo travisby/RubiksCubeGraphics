@@ -15,6 +15,10 @@ var Scene = function(canvasID, light, camera) {
     this.drawables = [];
 }
 
+Scene.prototype.remove = function (){
+    this.drawables = [];
+}
+
 Scene.prototype.add = function(drawable) {
     this.drawables.push(drawable);
 }
