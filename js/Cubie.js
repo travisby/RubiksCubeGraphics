@@ -1,6 +1,5 @@
 function Cubie() {
   Model.apply(this, []);
-  
   var colors = new CubeColors();
 
   var x = 0;
@@ -92,6 +91,6 @@ Cubie.prototype.getCoords = function() {
 Cubie.prototype.setColor = function(color, direction) {
     this._getColors().set(direction, color);
     this._setFancySolidCube(new FancySolidCube(this.material, this._getColors()));
-
+    //TODO: MOVE NEW CUBE TO THE RIGHT SPOT
 
 }
