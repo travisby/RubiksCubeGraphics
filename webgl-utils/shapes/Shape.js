@@ -12,7 +12,8 @@ const Z_AXIS = 2;
 /**
  * Constructor for the Shape object
  *
- * @param material TODO: Write
+ * @param {Material} material
+ * @param {CubeColors} colors
  */
 var Shape = function(material, colors) {
 
@@ -138,8 +139,13 @@ Shape.prototype.orbit = function(angle, axis) {
     avec[axis] = 1;
     this.transformation = mult(rotate(angle, avec), this.transformation);        
 }
-/*
- * TODO: Write comment
+
+/**
+ * Boilerplate WebGL taken care of.
+ * @param gl
+ * @param shader
+ * @param light
+ * @param camera
  */
 Shape.prototype.setupWebGL = function(gl, shader, light, camera) {
     gl.useProgram(shader);

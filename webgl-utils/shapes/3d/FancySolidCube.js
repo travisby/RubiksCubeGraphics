@@ -1,3 +1,9 @@
+/**
+ * Nice cube to use for drawing
+ * @param {Material} material
+ * @param {CubeColors} colors
+ * @constructor
+ */
 function FancySolidCube(material, colors) {
     Shape.apply(this, [material, colors]);
     this.vertices = [
@@ -50,6 +56,9 @@ function FancySolidCube(material, colors) {
 
         ];
 
+  /**
+   * Makes each side of the cube
+   */
     this.makeCube = function() {
         this.makeSide(0,4,2,6,24,26,25,27,this.colors[0]); //Front
         this.makeSide(1,0,3,2,11,10,9,8,this.colors[1]); //LEFT
@@ -59,6 +68,18 @@ function FancySolidCube(material, colors) {
         this.makeSide(2,6,3,7,20,22,21,23,this.colors[5]); //BOTTOM
     }
 
+  /**
+   * Builds just one side of a cube
+   * @param {Number} cubeTL
+   * @param {Number} cubeTR
+   * @param {Number} cubeBL
+   * @param {Number} cubeBR
+   * @param {Number} outTL
+   * @param {Number} outTR
+   * @param {Number} outBL
+   * @param {Number} outBR
+   * @param {Number[]} color
+   */
     this.makeSide = function(cubeTL, cubeTR, cubeBL, cubeBR, outTL, outTR, outBL, outBR, color) {
             
         

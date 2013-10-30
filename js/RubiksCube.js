@@ -1,10 +1,16 @@
+/**
+ * Rubiks Cube abstraction
+ * @param {CubeColors} colors
+ * @constructor
+ */
 function RubiksCube(colors) {
     Model.apply(this, []);
     this.colors = colors; 
     this.cubes = [];
     var count = 0;
     var mat = new Material(vec4(1,1,1,1), vec4(.1,.1,.1,1), vec4(1,1,1,1), 10);
-    
+
+    // set each cube
     for(var x = 0; x <= 2; x++) {
         this.cubes[x] = [];
        
@@ -13,7 +19,7 @@ function RubiksCube(colors) {
              for(var z = 0; z <= 2; z++) {
                 var c = this.colors[count];
                 if(x == 1 && y == 1 && z == 1) {
-                    console.log("Test");
+                    x;  // pass
                 }
                 else {
                     count++;
@@ -81,6 +87,10 @@ RubiksCube.prototype.turnByString = function(str) {
 }
 
 
+/**
+ * Turns an individual face of a cube, denoted by the starting letter of its center cube
+ * @param {char} face
+ */
 RubiksCube.prototype.turnFace = function (face) {
   console.log(face);
   if(face == 'b') {
@@ -102,6 +112,11 @@ RubiksCube.prototype.turnFace = function (face) {
         this.rotateRow(0,1);
     }
 }
+/**
+ * Rotates just one individual row
+ * @param {Cube[]} row
+ * @param {Cube[]} dir
+ */
 RubiksCube.prototype.rotateRow = function(row, dir) {
     for(var x = 0; x < this.cubes.length; x++) {
         for(var z = 0; z < this.cubes[x][row].length; z++) {
@@ -117,6 +132,11 @@ RubiksCube.prototype.rotateRow = function(row, dir) {
     
 }
 
+/**
+ * Rotates an individual row in the Z direction
+ * @param {Cube[]} row
+ * @param {Number} dir
+ */
 RubiksCube.prototype.rotateDepth = function(row, dir) {
     
     for(var x = 0; x < this.cubes.length; x++) {
@@ -132,6 +152,11 @@ RubiksCube.prototype.rotateDepth = function(row, dir) {
     this.swapDepth(row, dir);
 }
 
+/**
+ * Switches Cubies
+ * @param {Cubie[]} row
+ * @param {Number} dir
+ */
 RubiksCube.prototype.swapDepth = function(row, dir) {
 
     var top =       this.cubes[1][2][row];
@@ -171,6 +196,11 @@ RubiksCube.prototype.swapDepth = function(row, dir) {
     }
 }
 
+/**
+ * Swaps Cubies in row
+ * @param {Cubie[]} row
+ * @param {Number} dir
+ */
 RubiksCube.prototype.swapRow = function(row, dir) {
 
     var top =       this.cubes[1][row][0];
@@ -211,6 +241,11 @@ RubiksCube.prototype.swapRow = function(row, dir) {
 }
 
 
+/**
+ * Perform rotation about a column
+ * @param {Cubie[]} column
+ * @param {Number} dir
+ */
 RubiksCube.prototype.rotateColumn = function(column, dir) {
     for(var y = 0; y < this.cubes[column].length; y++) {
         for(var z = 0; z < this.cubes[column][y].length; z++) {
@@ -225,6 +260,11 @@ RubiksCube.prototype.rotateColumn = function(column, dir) {
     this.swapColumn(column, dir);
 }
 
+/**
+ * Switch based on a column
+ * @param {Cubie[]} column
+ * @param {Number} dir
+ */
 this.RubiksCube.prototype.swapColumn = function(column, dir) {
 
     var yLength = this.cubes[column].length - 1;
@@ -267,6 +307,12 @@ this.RubiksCube.prototype.swapColumn = function(column, dir) {
     }
 }
 
+/**
+ * Build a RubiksCube from a string
+ * @param input
+ * @returns {RubiksCube}
+ * @constructor
+ */
 function RubiksCubeFromString(input) {
    
     colors = charsToColors(input);

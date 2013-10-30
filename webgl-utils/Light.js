@@ -1,5 +1,3 @@
-//TODO: Write comments
-
 function Light() {
     this.position   = vec4();
     this.ambient    = vec4();

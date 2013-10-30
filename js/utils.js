@@ -12,6 +12,11 @@ function fileToString(file, callback) {
     reader.readAsText(file);
 }
 
+/**
+ * Translates a Direction object to a constant used elsewhere in the program
+ * @param {Direction} direction
+ * @returns {Number}
+ */
 function directionToAxis(direction) {
     switch (direction) {
         case CUBE_TOP:

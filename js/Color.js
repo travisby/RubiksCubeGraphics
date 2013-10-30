@@ -1,3 +1,7 @@
+/**
+ * Stores color information... meant to be statically loaded.
+ * @constructor
+ */
 function Color() {
 }
 Color.prototype.r = 0.0;

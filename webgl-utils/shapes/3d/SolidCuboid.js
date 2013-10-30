@@ -1,9 +1,12 @@
-//Git did not like my rename even though I redid it multiple times... Lost history for the file. :(
-
 /**
- * A simple WebGl Cuboid (3D rectangle).
+ * 3D Rectangle for WebGL
+ * @param {Material} material
+ * @param {CubeColors} colors
+ * @param {Number} width
+ * @param {Number} height
+ * @param {Number} depth
+ * @constructor
  */
-
 function SolidCuboid(material, colors, width, height, depth) {
     //Calls Shape's constructor as far as I can tell.
     //It works so leave it
@@ -13,7 +16,10 @@ function SolidCuboid(material, colors, width, height, depth) {
     var depth  = depth;
     
     this.vertices = [[]];
-    
+
+    /**
+     * Change vertices of our function
+     */
     this.setVertices = function()
     {
        this.vertices = [
@@ -28,6 +34,9 @@ function SolidCuboid(material, colors, width, height, depth) {
         ]; 
     }
 
+    /**
+     * Build a rectangular prism from our sides
+     */
     this.makeCuboid = function() {
        this.makeSide(0,1,2,3, this.colors[0]);
        this.makeSide(4,0,3,7, this.colors[1]);
@@ -37,6 +46,19 @@ function SolidCuboid(material, colors, width, height, depth) {
        this.makeSide(7,6,2,3, this.colors[5]);           
     }
 
+
+    /**
+     * Builds just one side of a cube
+     * @param {Number} cubeTL
+     * @param {Number} cubeTR
+     * @param {Number} cubeBL
+     * @param {Number} cubeBR
+     * @param {Number} outTL
+     * @param {Number} outTR
+     * @param {Number} outBL
+     * @param {Number} outBR
+     * @param {Number[]} color
+     */
     this.makeSide = function( topLeft, topRight, bottomRight, bottomLeft, color )
     {
         var t1 = subtract(this.vertices[topRight], this.vertices[topLeft]);
@@ -82,6 +104,10 @@ function SolidCuboid(material, colors, width, height, depth) {
 SolidCuboid.prototype = Object.create(Shape.prototype);
 SolidCuboid.prototype.constructor = SolidCuboid;
 
+/**
+ * Change the colors within the Cuboid
+ * @param colors
+ */
 SolidCuboid.prototype.changeColors = function(colors) {
     this.colors = colors.getColors();
     this.colorVectors = [];

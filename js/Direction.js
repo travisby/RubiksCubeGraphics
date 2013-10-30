@@ -1,3 +1,7 @@
+/**
+ * Pointers for directions, such as UP DOWN LEFT RIGHT FRONT BACK
+ * @constructor
+ */
 function Direction() {
 }
 

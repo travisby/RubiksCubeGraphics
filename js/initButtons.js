@@ -15,28 +15,24 @@ var init = function() {
     var spinW = document.getElementById("spinW");
     spinW.addEventListener("click",
         function() {
-            //TODO
             rubiksCube.turnFace('w');
         });
 
     var spinO = document.getElementById("spinO");
     spinO.addEventListener("click",
         function() {
-            //TODO
             rubiksCube.turnFace('o');
         });
     
     var spinY = document.getElementById("spinY");
     spinY.addEventListener("click",
         function() {
-            //TODO
             rubiksCube.turnFace('y');
         });
     
     var spinG = document.getElementById("spinG");
     spinG.addEventListener("click",
         function() {
-            //TODO
             rubiksCube.turnFace('g');
         });
     

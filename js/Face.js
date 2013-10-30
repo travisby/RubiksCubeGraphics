@@ -1,5 +1,5 @@
 /**
- *
+ * Individual Face of a Rubiks Cube, containing 9 cubies.  Abstraction for easier use of Cubes.
  * @param {Cubie[]} cubies
  * @constructor
  */
@@ -8,7 +8,7 @@ function Face(cubies) {
   // should be set in each subclass
 
   /**
-   *
+   * internal cubes
    * @type {Cubie[]}
    */
   var myCubies = cubies;
@@ -16,16 +16,15 @@ function Face(cubies) {
   this._getCubies = function() {
     return myCubies;
   }
-
-
-
-
 }
 
 Face.prototype = Object.create(Model.prototype);
 Face.prototype.constructor = Face;
 Face.prototype.DIRECTION = NODIRECTION;
 
+/**
+ * Turns our face 90 degrees CCW.  Quaternion Rotation
+ */
 Face.prototype.turn = function() {
     var cubies = this._getCubies();
   for (var i = 0; i < cubies.length; i++) {
@@ -52,8 +51,6 @@ Face.prototype.setColorsByString = function(colors) {
   // change colors string to actual colors
   colors = charsToColors(colors);
 
-    console.log("test ");
-    console.log(cubies);
   for (var i = 0; i < cubies.length; i++) {
     cubies[i].setColor(colors[i], this.DIRECTION);
   }

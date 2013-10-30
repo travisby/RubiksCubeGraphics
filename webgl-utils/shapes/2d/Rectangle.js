@@ -1,3 +1,7 @@
+/**
+ * Simple Rectangle for drawing
+ * @constructor
+ */
 function Rectangle() {
 
 }

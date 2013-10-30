@@ -1,3 +1,7 @@
+/**
+ * Simple Square for drawing
+ * @constructor
+ */
 function Square() {
 
 }
