@@ -5,6 +5,7 @@
  */
 function Face(cubies) {
   Model.apply(this, []);
+  console.log(this);
   // should be set in each subclass
   /**
    *
@@ -24,12 +25,13 @@ function Face(cubies) {
 
 }
 
+Face.prototype = Object.create(Model.prototype);
+Face.prototype.constructor = Face;
+    
 Face.prototype.turn = function() {
   // TODO
 }
 
-Face.prototype = Object.create(Model.prototype);
-Face.prototype.constructor = Face;
 
 /**
  * Get the color of our Face, which is defined by the center cubie
@@ -59,7 +61,7 @@ Face.prototype.setColorsByString = function(colors) {
 function BackFace(cubies) {
   Face.apply(this, cubies);
 }
-BackFace.prototype = new Face();
+BackFace.prototype = Object.create(Face.prototype);
 BackFace.prototype.constructor = Face;
 
 function LeftFace(cubies) {
