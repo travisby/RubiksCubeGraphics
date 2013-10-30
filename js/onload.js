@@ -24,8 +24,7 @@ window.onload = function() {
 
     var sceneA = new Scene("canvasA", light, cameraA);
     var sceneB = new Scene("canvasB", light, cameraB); 
-   // rubiksCube = RubiksCubeFactoryFromString("GGWRRGRRGOWWGGOYYROGOYYYRBRYYYRBGRWWBOYBOBBOBOGOWWBWWB");
-    rubiksCube = new RubiksCube();
+    rubiksCube = RubiksCubeFromString("RRRRRRRRRRGGGYYYBBBGGGYYYBBBGGGYYYBBBOOOOOOOOOWWWWWWWWW");
     /*
     var colors = new CubeColors();
     colors.set(CUBE_TOP, WHITE);

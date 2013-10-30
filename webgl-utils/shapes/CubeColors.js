@@ -12,15 +12,10 @@ const R    = 3;
 const BA     = 4;
 const BO   = 5;
 
-function CubeColors() {
-
-
-this.massSet = function(faces, colors) {
-    for(var i = 0; i < faces.length; i++) {
-        this.colors[faces[i]] =  colors[i];
+function CubeColors(faces, colors) {
+    if(faces != undefined && colors != undefined) {
+        this.massSet(faces, colors);
     }
-    return this;
-}
 }
 
 CubeColors.prototype.FACE_CONSTANTS = [CUBE_FRONT, CUBE_LEFT, CUBE_TOP, CUBE_RIGHT, CUBE_BACK, CUBE_BOTTOM];
@@ -31,6 +26,11 @@ CubeColors.prototype.set = function(face, color) {
 
 CubeColors.prototype.colors = [NOCOLOR, NOCOLOR, NOCOLOR, NOCOLOR, NOCOLOR, NOCOLOR];
 
+CubeColors.prototype.massSet = function(faces, colors) {
+    for(var i = 0; i < faces.length; i++) {
+        this.colors[faces[i]] =  colors[i];
+    }
+}
 CubeColors.prototype.getColors = function() {
     var myColors = [];
     for (var i = 0; i < this.FACE_CONSTANTS.length; i++) {
