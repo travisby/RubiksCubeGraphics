@@ -38,7 +38,6 @@ window.onload = function() {
     */
     sceneA.add(rubiksCube);
     sceneB.add(rubiksCube);
- 
     sceneA.render();
     sceneB.render();    
 }

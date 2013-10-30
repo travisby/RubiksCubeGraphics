@@ -71,9 +71,6 @@ Shape.prototype.draw = function(gl, shader, light, camera) {
             this.lock = false;
         }
     }
-    
-    gl.bindBuffer( gl.ARRAY_BUFFER, this.colorBuffer);
-    gl.bufferData( gl.ARRAY_BUFFER, flatten(this.colorVectors), gl.STATIC_DRAW );
     gl.uniformMatrix4fv(gl.getUniformLocation(shader, "transformation"), false, flatten(this.transformation));
 }
 
@@ -149,6 +146,8 @@ Shape.prototype.setupWebGL = function(gl, shader, light, camera) {
     //Creates a buffer for the color vector data
     this.colorBuffer = gl.createBuffer();
     
+    gl.bindBuffer( gl.ARRAY_BUFFER, this.colorBuffer);
+    gl.bufferData( gl.ARRAY_BUFFER, flatten(this.colorVectors), gl.STATIC_DRAW );
     var vertexColor = gl.getAttribLocation( shader, "vertexColor" );
     gl.vertexAttribPointer( vertexColor, 4, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( vertexColor );

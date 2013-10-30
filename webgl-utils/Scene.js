@@ -27,5 +27,6 @@ Scene.prototype.render = function() {
     var inst = this;
     window.setTimeout(function() {
         inst.render();
+        
     }, 1000/60);
 }
