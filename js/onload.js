@@ -5,13 +5,13 @@ var light;
 window.onload = function() {
     init();
     cameraA = new Camera();
-    cameraA.setOrtho(-5,5,-5,5,-5,5);
+    cameraA.setOrtho(-8,8,-8,8,-8,8);
     cameraA.move(0,0,2);
     cameraA.aim(0,0,0);
     cameraA.direction(0,3,2);
     
     cameraB = new Camera();
-    cameraB.setOrtho(-5,5,-5,5,-5,5);
+    cameraB.setOrtho(-8,8,-8,8,-8,8);
     cameraB.move(-2,-2,-2);
     cameraB.aim(0,0,0);
     cameraB.direction(-2,3,-2);
