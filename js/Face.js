@@ -16,15 +16,7 @@ function Face(cubies) {
   this._getCubies = function() {
     return myCubies;
   }
-  cubies[0].move(-1, X_AXIS); cubies[0].move(1, Y_AXIS);
-  cubies[1].move(1, Y_AXIS);
-  cubies[2].move(1, X_AXIS); cubies[2].move(1, Y_AXIS);
-  cubies[3].move(-1, X_AXIS);
-  // cubies[4].move()
-  cubies[5].move(1, X_AXIS);
-  cubies[6].move(-1, X_AXIS); cubies[6].move(-1, Y_AXIS);
-  cubies[7].move(-1, Y_AXIS);
-  cubies[8].move(1, X_AXIS); cubies[8].move(-1, Y_AXIS);
+
 
 }
 
@@ -63,6 +55,15 @@ Face.prototype.setColorsByString = function(colors) {
   for (var i = 0; i < cubies.length; i++) {
     cubies[i].setColor(colors[i], this.DIRECTION);
   }
+    cubies[0].move(-1, X_AXIS); cubies[0].move(1, Y_AXIS);
+    cubies[1].move(1, Y_AXIS);
+    cubies[2].move(1, X_AXIS); cubies[2].move(1, Y_AXIS);
+    cubies[3].move(-1, X_AXIS);
+    // cubies[4].move()
+    cubies[5].move(1, X_AXIS);
+    cubies[6].move(-1, X_AXIS); cubies[6].move(-1, Y_AXIS);
+    cubies[7].move(-1, Y_AXIS);
+    cubies[8].move(1, X_AXIS); cubies[8].move(-1, Y_AXIS);
 }
 
 
