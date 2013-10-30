@@ -81,3 +81,4 @@ function SolidCuboid(material, colors, width, height, depth) {
 
 SolidCuboid.prototype = Object.create(Shape.prototype);
 SolidCuboid.prototype.constructor = SolidCuboid;
+

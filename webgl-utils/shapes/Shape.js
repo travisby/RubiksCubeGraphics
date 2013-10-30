@@ -14,7 +14,7 @@ const Z_AXIS = 2;
  *
  * @param material TODO: Write
  */
-var Shape = function(material, colors) {
+var Shape = function(material, colors, transformation) {
 
 //Constructor parameter class variables
         this.material = material;
@@ -23,8 +23,12 @@ var Shape = function(material, colors) {
 //Other class variables
 
         //The transformation matrix
-        this.transformation = mat4();
-
+        if(transformation == undefined) {
+            this.transformation = mat4();
+        } else {
+            this.transformation = transformation;
+        }
+        
         //The array of point vectors that are passed down to the shader   
         this.points = [];
 
@@ -38,7 +42,6 @@ var Shape = function(material, colors) {
         this.delta; 
         this.axis;
 }
-
 
 Shape.prototype.smoothOrbit = function(delta, axis) {
     if(this.lock === false) {
@@ -73,6 +76,8 @@ Shape.prototype.draw = function(gl, shader, light, camera) {
         }
     }
     
+    gl.bindBuffer( gl.ARRAY_BUFFER, this.colorBuffer);
+    gl.bufferData( gl.ARRAY_BUFFER, flatten(this.colorVectors), gl.STATIC_DRAW );
     gl.uniformMatrix4fv(gl.getUniformLocation(shader, "transformation"), false, flatten(this.transformation));
 }
 
@@ -147,8 +152,6 @@ Shape.prototype.setupWebGL = function(gl, shader, light, camera) {
     
     //Creates a buffer for the color vector data
     this.colorBuffer = gl.createBuffer();
-    gl.bindBuffer( gl.ARRAY_BUFFER, this.colorBuffer);
-    gl.bufferData( gl.ARRAY_BUFFER, flatten(this.colorVectors), gl.STATIC_DRAW );
     
     var vertexColor = gl.getAttribLocation( shader, "vertexColor" );
     gl.vertexAttribPointer( vertexColor, 4, gl.FLOAT, false, 0, 0 );

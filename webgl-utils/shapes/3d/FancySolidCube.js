@@ -276,7 +276,9 @@ function FancySolidCube(material, colors) {
 FancySolidCube.prototype = Object.create(Shape.prototype);
 FancySolidCube.prototype.constructor = FancySolidCube;
 
-
+function ChangeColor(oldCube, colors) {
+    return new FancySolidCube(oldCube.material, colors, oldCube.transformation);
+}
 
 
 
