@@ -1,6 +1,5 @@
-var cameraA;
-var cameraB;
-var rubiksCube;
+cameraA = null;
+cameraB = null;
 
 window.onload = function() {
     init();
@@ -9,7 +8,7 @@ window.onload = function() {
     cameraA.move(2,2,2);
     cameraA.aim(0,0,0);
     cameraA.direction(2,3,2);
-    
+
     cameraB = new Camera();
     cameraB.setOrtho(-5,5,-5,5,-5,5);
     cameraB.move(-2,-2,-2);
@@ -22,10 +21,11 @@ window.onload = function() {
     light.setDiffuse(1,1,1,1);
     light.setAmbient(0,.1,.1,1);
 
-    var sceneA = new Scene("canvasA", light, cameraA);
-    var sceneB = new Scene("canvasB", light, cameraB); 
+    window.sceneA = new Scene("canvasA", light, cameraA);
+    window.sceneB = new Scene("canvasB", light, cameraB);
     //var rubiksCube = RubiksCubeFactoryFromString("GGWRRGRRGOWWGGOYYROGOYYYRBRYYYRBGRWWBOYBOBBOBOGOWWBWWB"); 
-    
+
+    /*
     var colors = new CubeColors();
     colors.set(CUBE_TOP, WHITE);
     colors.set(CUBE_BOTTOM, YELLOW);
@@ -36,7 +36,8 @@ window.onload = function() {
     rubiksCube = new SolidCube(new Material(vec4(1,1,1,1), vec4(1,1,1,1), vec4(.001,.001,.001,.1), 100000), colors);
     sceneA.add(rubiksCube);
     sceneB.add(rubiksCube);
+    */
  
-    sceneA.render();
-    sceneB.render();    
+    window.sceneA.render();
+    window.sceneB.render();
 }

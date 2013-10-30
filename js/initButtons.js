@@ -61,9 +61,11 @@ var init = function() {
               function(e) {
                 var textFromFile = e.target.result;
                 // GLOBAL
-                rubiksCube = RubiksCubeFactoryFromString(textFromFile);
+                window.rubiksCube = RubiksCubeFactoryFromString(textFromFile);
               }
-          )
+          );
+          sceneA.add(window.rubiksCube);
+          sceneB.add(window.rubiksCube);
         }),
         false
     );
