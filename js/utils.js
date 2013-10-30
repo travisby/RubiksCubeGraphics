@@ -33,16 +33,16 @@ function directionToAxis(direction) {
 function directionToAxisForStarting(direction) {
     switch (direction) {
         case CUBE_TOP:
-            return Z_AXIS;
+            return Y_AXIS;
         case CUBE_BOTTOM:
-            return Z_AXIS;
+            return Y_AXIS;
         case CUBE_LEFT:
             return X_AXIS;
         case CUBE_RIGHT:
             return X_AXIS;
         case CUBE_FRONT:
-            return Y_AXIS;
+            return Z_AXIS;
         case CUBE_BACK:
-            return Y_AXIS;
+            return Z_AXIS;
     }
 }
