@@ -1,8 +1,8 @@
 function Cubie() {
   
   var colors = new CubeColors();
-  colors.set(CUBE_FRONT, [1.0, 0, 0, 1]);
-  colors.set(CUBE_RIGHT, [0, 1.0, 0, 1]);
+  colors.set(CUBE_FRONT, RED);
+  colors.set(CUBE_RIGHT, GREEN);
   FancySolidCube.apply(this, [this.material, colors]);
   var x = 0;
   var y = 0;
