@@ -48,12 +48,19 @@ Yellow.prototype.g = 1.0;
 Yellow.prototype.b = 0.0;
 
 NOCOLOR = new Color();
+NOCOLOR.u = 0;
 WHITE = new White();
+WHITE.u = 1;
 RED = new Red();
+RED.u = 2;
 BLUE = new Blue();
+BLUE.u = 3;
 ORANGE = new Orange();
+ORANGE.u = 4;
 GREEN = new Green();
+GREEN.u = 5;
 YELLOW = new Yellow();
+YELLOW.u = 6;
 
 /**
  * Translates a character to a Color

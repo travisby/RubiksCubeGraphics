@@ -60,15 +60,7 @@ RubiksCube.prototype.turnFace = function(face) {
  * @returns {Face}
  */
 RubiksCube.prototype.getFaceByColor = function(color) {
-  var faces = this.getFaces();
-
-  for (var i = 0; i < faces.length; i++) {
-    if (faces[i].getColor() == color) {
-      return faces[i];
-    }
-  }
-  // SOMETHING BROKE
-  return null;
+  return this.getFaces()[window.faceIndexByColor[color.u]];
 }
 
 
@@ -128,6 +120,15 @@ function RubiksCubeFactoryFromString(text) {
   faces[3].setColorsByString([text[15], text[16], text[17], text[24], text[25], text[26], text[33], text[34], text[35]]);
   faces[4].setColorsByString([text[36], text[37], text[38], text[39], text[40], text[41], text[42], text[43], text[44]]);
   faces[5].setColorsByString([text[45], text[46], text[47], text[48], text[49], text[50], text[51], text[52], text[53]]);
+
+  // this is what you get javascript for being terrible
+  window.faceIndexByColor = new Object();
+  window.faceIndexByColor[charToColor(text[4]).u] = 0;
+  window.faceIndexByColor[charToColor(text[19]).u] = 1;
+  window.faceIndexByColor[charToColor(text[22]).u] = 2;
+  window.faceIndexByColor[charToColor(text[25]).u] = 3;
+  window.faceIndexByColor[charToColor(text[40]).u] = 4;
+  window.faceIndexByColor[charToColor(text[49]).u] = 5;
 
   return cube;
 }
