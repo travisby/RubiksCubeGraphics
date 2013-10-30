@@ -32,7 +32,49 @@ function RubiksCube(colors) {
 RubiksCube.prototype = Object.create(Model.prototype);
 RubiksCube.prototype.constructor = RubiksCube;
 
+/**
+ * Turns the rubiks cube based on a string... "O3W1" meaning "Turn orange three times, White one time"
+ * @param {string} str
+ */
+RubiksCube.prototype.turnByString = function(str) {
+  window.movesQueue = [];
+  /**
+   *
+   * @type {Face[]}
+   */
+  var faceColorsInOrder = [];
+
+  /**
+   *
+   * @type {int[]}
+   */
+  var numTurnsInOrder = [];
+  var index = 0;
+
+  // fill faceColorsInOrder and numTurnsInOrder
+  for (var i = 0; i < str.length; i += 2) {
+    faceColorsInOrder[index] = str[i].toLowerCase();
+    numTurnsInOrder[index] = parseInt(str[i + 1]);
+    index++;
+  }
+
+  // for every face...
+  for (var i = 0; i < faceColorsInOrder.length; i++) {
+
+    while (numTurnsInOrder[i] > 0) {
+      this.turnFace(faceColorsInOrder[i]);
+      numTurnsInOrder[i]--;
+
+      for (var j = 0; j < 10000; j++) {
+        // because I said sleep, that's why
+      }
+    }
+  }
+}
+
+
 RubiksCube.prototype.turnFace = function (face) {
+    window.isRotating = true;
     if(face == 'b') {
         this.rotateColumn(2,1);
     }    
