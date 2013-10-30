@@ -83,7 +83,7 @@ SolidCuboid.prototype = Object.create(Shape.prototype);
 SolidCuboid.prototype.constructor = SolidCuboid;
 
 SolidCuboid.prototype.changeColors(colors) {
-    this.colors = colors;
+    this.colors = colors.getColors();
     this.colorVectors = [];
     this.points = [];
     this.normals = [];
