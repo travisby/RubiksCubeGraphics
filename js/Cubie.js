@@ -56,6 +56,8 @@ function Cubie() {
 
   this._setFancySolidCube = function(newFancySolidCube) {
       fancySolidCube = newFancySolidCube;
+      this.setDrawables([]);
+      this.add(fancySolidCube);
   }
 }
 
