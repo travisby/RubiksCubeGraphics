@@ -7,7 +7,7 @@ function Cubie() {
   var y = 0;
   var z = 0;
   var fancySolidCube = new FancySolidCube(this.material, colors);
-
+  this.add(fancySolidCube);
   /**
    * Contains individual tiles of a cube
    * In order...
