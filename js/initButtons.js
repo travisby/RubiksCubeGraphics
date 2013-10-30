@@ -3,35 +3,36 @@ var init = function() {
     var spinR = document.getElementById("spinR");
     spinR.addEventListener("click",
         function() {
-            //TODO
+           rubiksCube.smoothOrbit(90, 1);
         });
     
     var spinB = document.getElementById("spinB");
-    spinR.addEventListener("click",
+    spinB.addEventListener("click",
         function() {
-            //TODO
+            console.log("test");
+            rubiksCube.smoothOrbit(-90, 1);
         });
     
     var spinW = document.getElementById("spinW");
-    spinR.addEventListener("click",
+    spinW.addEventListener("click",
         function() {
             //TODO
         });
-    
+
     var spinO = document.getElementById("spinO");
-    spinR.addEventListener("click",
+    spinO.addEventListener("click",
         function() {
             //TODO
         });
     
     var spinY = document.getElementById("spinY");
-    spinR.addEventListener("click",
+    spinY.addEventListener("click",
         function() {
             //TODO
         });
     
     var spinG = document.getElementById("spinG");
-    spinR.addEventListener("click",
+    spinG.addEventListener("click",
         function() {
             //TODO
         });

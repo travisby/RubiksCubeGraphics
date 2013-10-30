@@ -1,5 +1,6 @@
 var cameraA;
 var cameraB;
+var rubiksCube;
 
 window.onload = function() {
     init();
@@ -18,8 +19,8 @@ window.onload = function() {
     var light = new Light();
     light.setPosition(10,10,10,1);
     light.setSpecular(1,1,1,1);
-    light.setDiffuse(.2,.2,.2,.2);
-    light.setAmbient(.2,.2,.2,.2);
+    light.setDiffuse(1,1,1,1);
+    light.setAmbient(0,.1,.1,1);
 
     var sceneA = new Scene("canvasA", light, cameraA);
     var sceneB = new Scene("canvasB", light, cameraB); 
@@ -31,9 +32,8 @@ window.onload = function() {
     colors.set(CUBE_LEFT, [1, 0, 1, 1]);
     colors.set(CUBE_RIGHT, [0, 1, 1, 1]);
     colors.set(CUBE_FRONT, [0, 0, 1, 1]);
-    colors.set(CUBE_FRONT, [0, 1, 0, 1]);
-    var rubiksCube = new SolidCube(new Material(vec4(1,1,1,1), vec4(1,1,1,1), vec4(1,1,1,1), 10), colors);
-    
+    colors.set(CUBE_BACK, [0, 1, 0, 1]);
+    rubiksCube = new SolidCube(new Material(vec4(1,1,1,1), vec4(1,1,1,1), vec4(.001,.001,.001,.1), 100000), colors);
     sceneA.add(rubiksCube);
     sceneB.add(rubiksCube);
  

@@ -4,3 +4,7 @@ function Material(ambient, diffuse, specular, shininess) {
     this.specular = specular;
     this.shininess = shininess;
 }
+
+Material.prototype.getA = function() {
+    return this.ambient;
+}
